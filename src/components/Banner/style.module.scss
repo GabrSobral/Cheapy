@@ -1,5 +1,49 @@
 .container{
+  position: relative;
   width: 100%;
-  background-image: linear-gradient(to right, var(--primary), var(--white));
-  height: 15rem;
+  display: flex;
+
+  .pagesContainer{
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    scroll-behavior: smooth;
+  }
+
+  .page{
+    min-width: 100vw;
+    height: 20rem;
+  }
+
+  .slide_one{
+    background-image: linear-gradient(to right, var(--primary), var(--white))
+  }
+  .slide_two{
+    background-image: linear-gradient(to right, var(--white), var(--secondary));
+  }
+  .slide_three{
+    background-image: linear-gradient(to right, var(--secondary), var(--primary)); 
+  }
+
+  .pageIndicatorContainer{
+    position: absolute;
+    width: 2rem;
+    height: 1rem;
+    transform: translateX(-50%);
+    left: 50%;
+    bottom: 0.5rem;
+    display: flex;
+    gap: 0.25rem;
+
+    div{
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 0.2rem;
+      background-color: var(--white);
+
+      &.focus{
+        background-color: var(--secondary);
+      }
+    }
+  }
 }
