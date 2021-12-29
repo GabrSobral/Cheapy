@@ -11,10 +11,28 @@
   --background: #ffffff;
   --white: #ffffff;
   --text: #494949;
-  --text-soft: #6E6E6E;
+  --text-soft: #999999;
   --border: #E0E0E0;
+  --warning: #E45353
 }
 
 a{
   text-decoration: none;
+}
+
+span, p, a {
+  color: var(--text);
+}
+
+button{
+  border: 0;
+  cursor: pointer;
+  transition: 0.2s ease;
+  
+  &:hover{
+    filter: brightness(0.9);
+  }
+  &:active {
+    transform: scale(0.9);
+  }
 }

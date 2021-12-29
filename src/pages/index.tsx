@@ -1,6 +1,8 @@
 import type { NextPage } from 'next'
 import { Banner } from '../components/Banner'
 import { Header } from '../components/Header'
+import { ProductItem } from '../components/ProductItem'
+import { ProductItemsContainer } from '../components/ProductItemsContainer'
 
 import styles from '../styles/home.module.scss'
 
@@ -14,6 +16,7 @@ const Home: NextPage = () => {
         <section>
           <span className={styles.titleSection}>Anunciados hoje</span>
 
+          <ProductItemsContainer/>
         </section>
       </main>
    </div>
