@@ -7,15 +7,15 @@ export const Banner = () => {
   const [ pages ] = useState([ 
     {
       id: 1,
-      render: () => <div className={`${styles.slide_one} ${styles.page}`}/>
+      render: (item: any) => <div className={`${styles.slide_one} ${styles.page}`} key={item.id}/>
     },
     {
       id: 2,
-      render: () => <div className={`${styles.slide_two} ${styles.page}`}/>
+      render: (item: any) => <div className={`${styles.slide_two} ${styles.page}`} key={item.id}/>
     },
     {
       id: 3,
-      render: () => <div className={`${styles.slide_three} ${styles.page}`}/>
+      render: (item: any) => <div className={`${styles.slide_three} ${styles.page}`} key={item.id}/>
     }]);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export const Banner = () => {
   return(
     <section className={styles.container}>
       <div className={styles.pagesContainer} ref={bannerRef}>
-        {pages.map(item => item.render())}
+        {pages.map(item => item.render(item))}
       </div>
 
       <div className={styles.pageIndicatorContainer}>

@@ -19,10 +19,10 @@
     background-image: linear-gradient(to right, var(--primary), var(--white))
   }
   .slide_two{
-    background-image: linear-gradient(to right, var(--white), var(--secondary));
+    background: var(--secondary); 
   }
   .slide_three{
-    background-image: linear-gradient(to right, var(--secondary), var(--primary)); 
+    background: var(--warning); 
   }
 
   .pageIndicatorContainer{
@@ -42,7 +42,7 @@
       background-color: var(--white);
 
       &.focus{
-        background-color: var(--secondary);
+        background-color: var(--text);
       }
     }
   }
