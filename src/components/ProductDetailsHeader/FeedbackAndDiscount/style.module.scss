@@ -1,0 +1,31 @@
+.feedback_discount{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  .feedback{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    
+    > div{
+      display: flex;
+    }
+
+    > span{
+      font-weight: 500;
+      font-size: 0.8rem;
+    }
+  }
+
+  .discount{
+    padding: 0.3rem 1rem;
+    user-select: none;
+    border-radius: 7px;
+    background-color: var(--secondary);
+    color: var(--white);
+    font-weight: 500;
+  }
+}
