@@ -1,5 +1,6 @@
 import styles from './style.module.scss'
 import Image from 'next/image'
+import { FeedbackStars } from '../FeedbackStars'
 import Link from 'next/link'
 
 export const ProductItem = () => {
@@ -18,13 +19,7 @@ export const ProductItem = () => {
             Smartphone Samsung Galaxy A32 128GB Violeta 4G
           </span>
 
-          <div className={styles.starsContainer}>
-            <Image src="/StarFilled.svg" alt="Star of feedback" width={25} height={25}/>
-            <Image src="/StarFilled.svg" alt="Star of feedback" width={25} height={25}/>
-            <Image src="/StarFilled.svg" alt="Star of feedback" width={25} height={25}/>
-            <Image src="/Star.svg" alt="Star of feedback" width={25} height={25}/>
-            <Image src="/Star.svg" alt="Star of feedback" width={25} height={25}/>
-          </div>
+          <FeedbackStars size={25}/>
 
           <div className={styles.priceContainer}>
             <span className={styles.oldPrice}>R$1.999.00</span>

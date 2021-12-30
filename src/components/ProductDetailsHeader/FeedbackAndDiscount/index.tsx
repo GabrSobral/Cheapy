@@ -1,17 +1,12 @@
 import Image from 'next/image'
+import { FeedbackStars } from '../../FeedbackStars'
 import styles from './style.module.scss'
 
 export const FeedbackAndDiscount = () => {
   return(
     <div className={styles.feedback_discount}>
       <div className={styles.feedback}>
-        <div>
-          <Image src="/StarFilled.svg" width={32} height={32} alt="Star"/>
-          <Image src="/StarFilled.svg" width={32} height={32} alt="Star"/>
-          <Image src="/StarFilled.svg" width={32} height={32} alt="Star"/>
-          <Image src="/Star.svg" width={32} height={32} alt="Star"/>
-          <Image src="/Star.svg" width={32} height={32} alt="Star"/>
-        </div>
+        <FeedbackStars size={32}/>
         <span>203 avaliações</span>
       </div>
 
