@@ -1,0 +1,57 @@
+.container {
+  position: relative;
+  width: calc(50% - 0.5rem);
+  border-radius: 7px;
+  border: 2px solid var(--primary);
+  padding: 1rem 1rem 3rem 1rem;
+
+  .top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    div:first-child {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .img{
+        position: relative;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1.5rem;
+        overflow: hidden;
+      }
+    }
+  }
+
+  .content{
+    margin-top: 0.5rem;
+
+    span{
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+    
+    p{
+      margin-top: 0.5rem;
+    }
+  }
+  .recomendation{
+    position: absolute;
+    margin-top: 0.5rem;
+    right: 1rem;
+    bottom: 1rem;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 1024px){
+  .container{
+    width: 100%;
+  }
+}

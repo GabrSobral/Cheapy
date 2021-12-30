@@ -1,0 +1,43 @@
+.price_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .old_price{
+    span{
+      color: var(--text-soft);
+
+      &:last-child{
+        text-decoration: line-through;
+      }
+    }
+  }
+
+  .current_price{
+    span{
+      color: var(--text);
+      font-size: 1.25rem;
+
+      &:last-child{
+        font-size: 3rem;
+        font-weight: 500;
+      }
+    }
+  }
+
+  button {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+
+    &:hover{
+      transform: scale(1.1);
+    }
+
+    &:active {
+      transform: scale(0.7);
+    }
+  }
+}

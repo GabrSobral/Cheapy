@@ -1,0 +1,27 @@
+.feedbacks_container{
+  margin-top: 2rem;
+
+  .feedbacks_container_top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button{
+      padding: 0.8rem 1rem;
+      border-radius: 7px;
+      background-color: var(--primary);
+      color: var(--white);
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .feedbacks_list{
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+}
