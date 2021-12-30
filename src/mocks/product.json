@@ -1,0 +1,25 @@
+{
+  "id": "sidaosdasd-dasd-asdasdas-dasd",
+  "name": "Smartphone Samsung Galaxy A32 128GB violeta 4G - 4GB RAM Tela 6.4 Câm. Quádrupla + Selfie 20MP",
+  "description": "Tenha uma solução para o seu dia a dia sem deixar nada para trás com o Galaxy A32 da Samsung. Realize fotos especiais e únicas com o conjunto de 4 câmeras na parte de trás do aparelho. Divirta-se e compartilhe seus momentos especiais ao fotografar com a câmera de selfie de 20MP. A tela de 6,4 polegadas com resolução FHD+ deste smartphone oferece uma experiência de visualização imersiva, seja ao ver seus vídeos, fotos ou simplesmente acessar as redes sociais. Oferece um processador Octa-Core e 4GB de memória RAM para que você tenha tudo ao alcance dos dedos de maneira mais fácil. O armazenamento interno de 128GB entrega muita conveniência para salvar seus documentos de maneira segura. E se mesmo assim achar pouco, você pode usar um cartão MicroSD de até 1TB para aumentar essa capacidade. Fique sempre conectado com a tecnologia 4G e Wi-Fi em um aparelho dual chip! Tenha bateria para o dia todo, afinal estamos falando de 5000mAh, além de contar com carregamento rápido de 15W. A cor violeta destaca o design moderno do produto e combina perfeitamente com seu dia a dia.",
+  "discount": 1,
+  "price": 1.999,
+  "feedbacks": 203,
+  "average_rating": 3,
+  "advertiser": {
+    "id": "1",
+    "name": "Michael Jackson Barros"
+  },
+  "thumb": { "id": "1", "url" :"/img1.jpg" },
+  "images": [
+    { "id": "2", "url": "/img2.jpg" },
+    { "id": "3", "url": "/img3.jpg" },
+    { "id": "4", "url": "/img4.jpg" }
+  ],
+  "tags": [
+    { "id": "1", "name": "Celulares" },
+    { "id": "2", "name": "Tecnologia" },
+    { "id": "3", "name": "Sumsung" },
+    { "id": "4", "name": "Custo Benefício" }
+  ]
+}
