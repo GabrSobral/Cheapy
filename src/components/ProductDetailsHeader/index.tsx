@@ -1,20 +1,23 @@
 import Image from 'next/image'
+import { useEffect } from 'react'
+import { useProduct } from '../../contexts/product'
 import { FeedbackAndDiscount } from './FeedbackAndDiscount'
 import { Images } from './Images'
 import { Price } from './Price'
-import styles from './style.module.scss' 
 import { Tags } from './Tags'
 
+import styles from './style.module.scss' 
+
 export const ProductDetailsHeader = () => {
+  const { product } = useProduct();
+
   return(
     <section className={styles.container}>
       <Images/>
 
       <div className={styles.details_container}>
         <div className={styles.top}>
-          <h2 className={styles.product_name}>
-            Smartphone Samsung Galaxy A32 128GB violeta 4G - 4GB RAM Tela 6.4 Câm. Quádrupla + Selfie 20MP
-          </h2>
+          <h2 className={styles.product_name}>{product?.name}</h2>
 
           <FeedbackAndDiscount/>
           <Tags/>
