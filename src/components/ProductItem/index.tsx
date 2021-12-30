@@ -1,9 +1,10 @@
 import styles from './style.module.scss'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export const ProductItem = () => {
   return(
-    <a href="#">
+    <Link href="/product" passHref>
       <div className={styles.container}>
         <div className={styles.imageContainer}>
           <div className={styles.discount}>
@@ -31,6 +32,6 @@ export const ProductItem = () => {
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   )
 }

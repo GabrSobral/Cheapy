@@ -5,6 +5,7 @@
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.186);
   transition: 0.2s ease;
   overflow: hidden;
+  cursor: pointer;
   
   &:hover{
     transform: scale(1.05);
