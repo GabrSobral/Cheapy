@@ -6,9 +6,7 @@ import styles from './style.module.scss'
 export const Header = () => {
   return(
     <header className={styles.container}>
-      <Link href="/" passHref>
-        <Image src="/Logo.svg" alt="Logo" height={50} width={120}/>
-      </Link>
+      <Image src="/Logo.svg" alt="Logo" height={50} width={120}/>
 
       <nav>
         <a href="#">Contato</a>
