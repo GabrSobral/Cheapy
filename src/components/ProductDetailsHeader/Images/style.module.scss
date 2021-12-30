@@ -1,0 +1,35 @@
+.images_container{
+  flex: 0.45;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: hidden;
+
+  .images_container_main{
+    position: relative;
+    flex: 1;
+    border-radius: 7px;
+    background-color: var(--border);
+  }
+
+  .images_container_others{
+    display: flex;
+    align-items: center;
+    overflow-x: scroll;
+    gap: 1rem;
+
+    .imageButton{
+      overflow: hidden;
+      filter: brightness(0.9);
+      position: relative;
+      min-width: 6rem;
+      min-height: 6rem;
+      background-color: var(--border);
+      border-radius: 7px;
+
+      &.focus{
+        border: 2px inset var(--primary-soft);
+      }
+    }
+  }
+}
