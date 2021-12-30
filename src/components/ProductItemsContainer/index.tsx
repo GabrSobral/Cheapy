@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { ProductItem } from '../ProductItem'
 
+import product from '../../mocks/product.json'
+
 import styles from './style.module.scss'
 
 export const ProductItemsContainer = () => {
@@ -47,7 +49,7 @@ export const ProductItemsContainer = () => {
       <div className={styles.carrouselContainer} ref={carrousel}>
         {test.map(item => 
           <div  className={styles.productITemContainer} key={item} ref={productItemRef}>
-            <ProductItem/>
+            <ProductItem product={product}/>
           </div>
         )}
       </div>
