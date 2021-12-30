@@ -21,7 +21,7 @@ a{
   text-decoration: none;
 }
 
-span, p, a {
+span, p, a, h1, h2, h3, h4{
   color: var(--text);
 }
 
@@ -29,11 +29,9 @@ button{
   border: 0;
   cursor: pointer;
   transition: 0.2s ease;
+  outline: none;
   
   &:hover{
     filter: brightness(0.9);
-  }
-  &:active {
-    transform: scale(0.9);
   }
 }

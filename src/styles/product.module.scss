@@ -1,0 +1,21 @@
+.container {
+  main {
+    margin-top: 4rem;
+    width: 100%;
+    padding: 1rem 4rem;
+
+    .prudct_description{
+      margin-top: 2rem;
+
+      h3{
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+        font-size: 1.4rem;
+      }
+
+      p{
+        font-size: 1rem;
+      }
+    }
+  }
+}
