@@ -23,7 +23,7 @@ export const FeedbackItem = ({ feedback }: Props) => {
 
       <div className={styles.content}>
         <span className={styles.stitle}>{feedback.title}</span>
-        <p>{feedback.content}</p>
+        <p>{feedback.message}</p>
       </div>
 
       <div className={styles.recomendation} style={{ color: feedback.recomendation ? "#8FE281" : "#E45353" }}>
