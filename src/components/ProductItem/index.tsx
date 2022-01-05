@@ -20,7 +20,7 @@ export const ProductItem = ({ product }: Props) => {
   },[product])
 
   return(
-    <Link href="/product" passHref>
+    <Link href={`/product/${product.id}`} passHref>
       <div className={styles.container}>
         <div className={styles.imageContainer}>
           <div className={styles.discount}>
@@ -32,7 +32,7 @@ export const ProductItem = ({ product }: Props) => {
         <div className={styles.detailsContainer}>
           <span className={styles.productName}>{product.name}</span>
 
-          <FeedbackStars size={25} stars={product.average_rating}/>
+          <FeedbackStars size={25} stars={product.averageRating}/>
 
           <div className={styles.priceContainer}>
             <span className={styles.oldPrice}>{`R$${product.price}`}</span>

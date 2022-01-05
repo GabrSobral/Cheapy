@@ -25,11 +25,14 @@ span, p, a, h1, h2, h3, h4{
   color: var(--text);
 }
 
+input, button{
+  outline: 0;
+}
+
 button{
   border: 0;
   cursor: pointer;
   transition: 0.2s ease;
-  outline: none;
   
   &:hover{
     filter: brightness(0.9);

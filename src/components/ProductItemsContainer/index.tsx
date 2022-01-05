@@ -5,6 +5,7 @@ import { ProductItem } from '../ProductItem'
 import product from '../../mocks/product.json'
 
 import styles from './style.module.scss'
+import { api } from '../../services/api'
 
 export const ProductItemsContainer = () => {
   const carrousel = useRef<HTMLDivElement>(null);
@@ -12,8 +13,12 @@ export const ProductItemsContainer = () => {
   const leftButton = useRef<HTMLButtonElement>(null);
   const productItemRef = useRef<HTMLDivElement>(null);
   const [ currentPosition, setCurrentPosition ] = useState(0);
+  const [ products, setProducts] = useState([]);
 
-  const test = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  useEffect(() => {
+    api.get("/products")
+      .then(({ data }) => setProducts(data));
+  },[])
 
   function move(to: "right" | "left"){
     if(!carrousel.current || !productItemRef.current) return;
@@ -47,9 +52,9 @@ export const ProductItemsContainer = () => {
       </button>
 
       <div className={styles.carrouselContainer} ref={carrousel}>
-        {test.map(item => 
+        {products.map(item => 
           <div  className={styles.productITemContainer} key={item} ref={productItemRef}>
-            <ProductItem product={product}/>
+            <ProductItem product={item}/>
           </div>
         )}
       </div>
