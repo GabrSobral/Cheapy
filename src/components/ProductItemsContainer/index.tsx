@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { ProductItem } from '../ProductItem'
 
-import product from '../../mocks/product.json'
-
 import styles from './style.module.scss'
 import { api } from '../../services/api'
 

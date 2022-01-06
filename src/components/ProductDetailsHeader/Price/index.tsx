@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { formatPrice } from '../../../../utils/formatPrice'
 import { useProduct } from '../../../contexts/product'
 import styles from './style.module.scss'
 
@@ -21,13 +22,13 @@ export const Price = () => {
         {product?.discount !== 0 && 
           <div className={styles.old_price}>
             <span>De </span>
-            <span>{product?.price}</span>
+            <span>{formatPrice(product?.price || 0)}</span>
           </div>
         }
 
         <div className={styles.current_price}>
           <span>Por </span>
-          <span>{finalPrice}</span>
+          <span>{formatPrice(finalPrice)}</span>
         </div>
       </div>
       

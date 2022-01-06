@@ -4,6 +4,7 @@ import { FeedbackStars } from '../FeedbackStars'
 import Link from 'next/link'
 import { IProduct } from '../../types/IProduct'
 import { useEffect, useState } from 'react'
+import { formatPrice } from '../../../utils/formatPrice'
 
 interface Props {
   product: IProduct;
@@ -35,8 +36,8 @@ export const ProductItem = ({ product }: Props) => {
           <FeedbackStars size={25} stars={product.averageRating}/>
 
           <div className={styles.priceContainer}>
-            <span className={styles.oldPrice}>{`R$${product.price}`}</span>
-            <span className={styles.currentPrice}>{`R$${currentPrice}`}</span>
+            <span className={styles.oldPrice}>{formatPrice(product.price)}</span>
+            <span className={styles.currentPrice}>{formatPrice(currentPrice)}</span>
           </div>
         </div>
       </div>
