@@ -20,34 +20,5 @@
       font-weight: 500;
       font-size: 1.5rem;
     }
-
-    .add_to_cart{
-      position: relative;
-      width: 100%;
-      margin-top: 0.5rem;
-      border-radius: 7px;
-      background-color: var(--secondary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.15rem;
-      color: var(--white);
-      font-size: 1.3rem;
-      font-weight: 500;
-
-      &:active{
-        transform: scale(0.95);
-      }
-
-      .add_to_cart_icon{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        transform: translateY(-50%);
-        top: 50%;
-        right: 1rem;
-      }
-    }
   }
 }

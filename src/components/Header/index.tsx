@@ -10,7 +10,7 @@ export const Header = () => {
 
       <nav>
         <a href="#">Contato</a>
-        <a href="#">Entrar</a>
+        <Link href="/signIn">Entrar</Link>
         <a href="#" className={styles.announce}>Anunciar</a>
       </nav>
     </header>

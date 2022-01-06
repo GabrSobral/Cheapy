@@ -7,6 +7,7 @@ import { Price } from './Price'
 import { Tags } from './Tags'
 
 import styles from './style.module.scss' 
+import { Button } from '../Button'
 
 export const ProductDetailsHeader = () => {
   const { product } = useProduct();
@@ -26,17 +27,11 @@ export const ProductDetailsHeader = () => {
         <div>
           <Price/>
 
-          <button type="button" className={styles.add_to_cart}>
-            Adicionar ao carrinho
-            <div className={styles.add_to_cart_icon}>
-              <Image 
-                src="/shopping_cart.svg" 
-                alt="Ícone de carrinho de compras"
-                width={36}
-                height={36}
-                />
-            </div>
-          </button>
+          <Button
+            text="Adicionar ao carrinho"
+            imageAlt="Ícone de carrinho de compras"
+            imageSrc="/shopping_cart.svg"
+          />
         </div>
       </div>
     </section>

@@ -20,6 +20,8 @@ export const ProductItem = ({ product }: Props) => {
     setCurrentPrice(product.price - discount)
   },[product])
 
+  const loader = (imageUrl: string) => imageUrl;
+
   return(
     <Link href={`/product/${product.id}`} passHref>
       <div className={styles.container}>
@@ -30,7 +32,13 @@ export const ProductItem = ({ product }: Props) => {
               <span>-{product.discount}%</span>
             </div> }
           
-          <Image src="/img1.jpg" alt="imagem do produto" layout="fill" objectFit="cover"/>
+          <Image 
+            loader={() => loader(product.thumb)}
+            src={product.thumb} 
+            alt="imagem do produto" 
+            layout="fill" 
+            objectFit="cover"
+          />
         </div>
 
         <div className={styles.detailsContainer}>
