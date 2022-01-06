@@ -23,7 +23,10 @@ export const Feedbacks = () => {
 
   return(
     <section className={styles.feedbacks_container}>
-      { isModalVisible && <CreateFeedbackModal/> }
+      { isModalVisible && 
+        <CreateFeedbackModal
+          closeModal={() => setIsModalVisible(false)}
+        /> }
       <div className={styles.feedbacks_container_top}>
         <h3>Avaliações</h3>
 

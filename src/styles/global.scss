@@ -25,7 +25,7 @@ span, p, a, h1, h2, h3, h4{
   color: var(--text);
 }
 
-input, button{
+input, button, textarea{
   outline: 0;
 }
 
@@ -33,6 +33,15 @@ button{
   border: 0;
   cursor: pointer;
   transition: 0.2s ease;
+
+  &:disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    &:hover{
+      filter: brightness(1);
+    }
+  }
   
   &:hover{
     filter: brightness(0.9);
