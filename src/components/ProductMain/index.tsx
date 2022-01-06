@@ -8,16 +8,16 @@ import { ProductDescription } from '../ProductDescription'
 import { ProductDetailsHeader } from '../ProductDetailsHeader'
 import styles from './style.module.scss'
 
-export function ProductMain(){
+interface Props {
+  product: IProduct
+}
+
+export function ProductMain({ product }: Props){
   const { setProductsContext } = useProduct();
-  const router = useRouter();
 
   useEffect(() => {
-    if(!router.query.id) return;
-
-    api.get(`/products/${router.query.id}`)
-      .then(({ data }) => setProductsContext(data));
-  },[router, setProductsContext])
+    setProductsContext(product);
+  },[setProductsContext, product]);
 
   return(
     <main className={styles.container}>

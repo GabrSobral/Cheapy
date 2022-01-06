@@ -15,13 +15,13 @@ interface ProductProps {
   product: IProduct
 }
 
-const Product: NextPage<ProductProps> = () => {
+const Product: NextPage<ProductProps> = ({ product }: ProductProps) => {
   return(
     <div className={styles.container}>
       <Header/>
 
       <ProductProvider>
-        <ProductMain/>
+        <ProductMain product={product} />
       </ProductProvider>
       
       <Footer/>
@@ -29,3 +29,20 @@ const Product: NextPage<ProductProps> = () => {
   )
 }
 export default Product;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  if(!context.params?.id) return { props: {}};
+
+  const https = require("https");
+  const agent = new https.Agent({
+    rejectUnauthorized: false
+  });
+
+  const { data } = await api.get(`/products/${context.params?.id}`, { httpsAgent: agent });
+
+  return {
+    props: {
+      product: data
+    }
+  }
+}
