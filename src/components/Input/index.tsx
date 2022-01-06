@@ -21,6 +21,7 @@ export function Input({ value, setValue, type, title }: InputCreateProps){
           />
         : 
           <textarea
+            maxLength={240}
             onChange={event => setValue(event.target.value)}
             className={value ? styles.filled : ''}
             value={value}
