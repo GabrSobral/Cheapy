@@ -1,14 +1,8 @@
 import { GetServerSideProps, NextPage } from 'next';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import { Footer } from '../../components/Footer';
-import { Header } from '../../components/Header';
-
-import { ProductMain } from '../../components/ProductMain';
+import { ProductContent } from '../../content/ProductContent';
 import { ProductProvider } from '../../contexts/product';
 import { api } from '../../services/api';
 
-import styles from '../../styles/product.module.scss'
 import { IProduct } from '../../types/IProduct';
 
 interface ProductProps {
@@ -17,15 +11,9 @@ interface ProductProps {
 
 const Product: NextPage<ProductProps> = ({ product }: ProductProps) => {
   return(
-    <div className={styles.container}>
-      <Header/>
-
-      <ProductProvider>
-        <ProductMain product={product} />
-      </ProductProvider>
-      
-      <Footer/>
-    </div>
+    <ProductProvider>
+      <ProductContent product={product}/>
+    </ProductProvider>
   )
 }
 export default Product;
