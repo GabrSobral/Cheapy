@@ -1,0 +1,14 @@
+.banner{
+  flex: 0.6;
+  display: flex;
+  overflow: hidden;
+  
+  .img_container{
+    height: 100%;
+  }
+
+  .space{
+    flex: 1;
+    background-color: var(--primary);
+  }
+}
