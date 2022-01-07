@@ -1,0 +1,77 @@
+.container{
+  main{
+    width: 100%;
+    height: calc(100vh - 4rem);
+    margin-top: 4rem;
+    display: flex;
+
+    section{
+      flex: 0.4;
+      background-color: var(--background);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      .wrapper{
+        position: relative;
+        width: 25rem;
+        min-height: 23.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .go_back_button{
+          position: absolute;
+          left: 0rem;
+          top: -5rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          color: var(--primary);
+          background-color: transparent;
+          font-weight: 500;
+          font-size: 1rem;
+        }
+
+        > a{
+          font-size: 0.8rem;
+          margin-top: 0.6rem;
+          text-align: center;
+          font-weight: 500;
+          color: var(--text-soft);
+        }
+
+        .send_again{
+          background-color: transparent;
+          color: var(--secondary);
+          margin-right: auto;
+          font-weight: 500;
+          font-size: 1rem;
+        }
+      }
+
+      .title_container{
+        text-align: left;
+        margin-bottom: 1rem;
+        width: 100%;
+
+        h2{
+          font-weight: 500;
+          font-size: 2rem;
+        }
+        span{
+          color: var(--text-soft);
+          font-size: 0.8rem;
+        }
+      }
+
+      form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  }
+}
