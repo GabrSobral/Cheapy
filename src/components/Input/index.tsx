@@ -4,7 +4,7 @@ interface InputCreateProps{
   title: string;
   value: string | undefined;
   setValue: (value: string) => void;
-  type: 'text' | 'textarea';
+  type: 'text' | 'textarea' | 'email' | 'password';
 }
 
 export function Input({ value, setValue, type, title }: InputCreateProps){

@@ -23,7 +23,7 @@ export const ProductItem = ({ product }: Props) => {
   const loader = (imageUrl: string) => imageUrl;
 
   return(
-    <Link href={`/product/${product.id}`} passHref>
+    <Link href={`/Product/${product.id}`} passHref>
       <div className={styles.container}>
         <div className={styles.imageContainer}>
 
