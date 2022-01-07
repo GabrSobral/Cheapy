@@ -13,7 +13,9 @@ export const FeedbackItem = ({ feedback }: Props) => {
       <div className={styles.top}>
         <div>
           <div className={styles.img}>
-            <Image src="/img1.jpg" alt="foto de perfil" width={48} height={48}/>
+            { feedback.user.photo && 
+              <Image src={feedback.user.photo} alt={`foto de perfil de ${feedback.user.name}`} width={48} height={48}/>
+            }
           </div>
           <span>{feedback.user.name}</span>
         </div>
@@ -23,7 +25,7 @@ export const FeedbackItem = ({ feedback }: Props) => {
 
       <div className={styles.content}>
         <span className={styles.stitle}>{feedback.title}</span>
-        <p>{feedback.content}</p>
+        <p>{feedback.message}</p>
       </div>
 
       <div className={styles.recomendation} style={{ color: feedback.recomendation ? "#8FE281" : "#E45353" }}>

@@ -1,10 +1,12 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from "react";
 import { IProduct } from "../../types/IProduct";
 
-import item from '../../mocks/product.json'
+import { useRouter } from "next/router";
+import { api } from "../../services/api";
 
 interface ProductContextProps {
   product?: IProduct;
+  setProductsContext: (products: IProduct) => void;
 }
 
 export const ProductContext = createContext({} as ProductContextProps);
@@ -12,13 +14,16 @@ export const ProductContext = createContext({} as ProductContextProps);
 export function ProductProvider({ children }: { children: ReactNode }){
   const [ product, setProduct ] = useState<IProduct>();
 
-  useEffect(() => {
-    setProduct(item);
-  },[])
+  const setProductsContext = useCallback((products: IProduct) => {
+    setProduct(products);
+  },[]);
 
   return(
     <ProductContext.Provider
-      value={{ product }}
+      value={{ 
+        product,
+        setProductsContext
+      }}
     >
       {children}
     </ProductContext.Provider>

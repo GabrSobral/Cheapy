@@ -10,19 +10,27 @@ export const Images = () => {
   const [ images, setImages ] = useState<IPhotos[]>([]);
 
   useEffect(() => {
-    product?.images.unshift(product?.thumb);
+    const thumbImage: IPhotos = {
+      id: product?.id || '',
+      url: product?.thumb || ''
+    };
+
+    product?.images.unshift(thumbImage);
     setImages(product?.images || []);
-    setCurrentImage(product?.thumb);
-  }, [product?.images, product?.thumb]);
+    setCurrentImage(thumbImage);
+  }, [product]);
+
+  const loader = (imageUrl: string) => imageUrl;
 
   return(
     <div className={styles.images_container}>
       <div className={styles.images_container_main}>
-        { currentImage && 
+        { currentImage?.url && 
           <Image 
+            loader={() => loader(currentImage?.url)}
             src={currentImage?.url} 
             alt="imagem do produto" 
-            layout="fill" 
+            layout="fill"
             objectFit="contain"
             priority
             placeholder="blur"
@@ -39,9 +47,10 @@ export const Images = () => {
             className={`${styles.imageButton} ${currentImage?.id === image.id && styles.focus}`}
           >
             <Image 
+              loader={() => loader(image.url)}
               src={image.url} 
+              layout="fill"
               alt="imagem do produto" 
-              layout="fill" 
               objectFit="contain"
               placeholder="blur"
               blurDataURL={image.url}

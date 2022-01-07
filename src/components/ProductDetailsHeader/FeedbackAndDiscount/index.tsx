@@ -9,7 +9,7 @@ export const FeedbackAndDiscount = () => {
   return(
     <div className={styles.feedback_discount}>
       <div className={styles.feedback}>
-        <FeedbackStars size={32} stars={product?.average_rating || 0}/>
+        <FeedbackStars size={32} stars={product?.averageRating || 0}/>
         <span>{product?.feedbacks} avaliações</span>
       </div>
 

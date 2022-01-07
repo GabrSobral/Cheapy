@@ -8,12 +8,12 @@ export interface IProduct {
   discount: number,
   price: number,
   feedbacks: number,
-  average_rating: number,
+  averageRating: number,
   tags: ICategory[]
   advertiser: {
     id: string,
     name: string
   },
-  thumb: IPhotos,
+  thumb: string,
   images: IPhotos[],
 }

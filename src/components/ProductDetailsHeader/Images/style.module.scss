@@ -26,6 +26,7 @@
       min-height: 6rem;
       background-color: var(--border);
       border-radius: 7px;
+      transition: 0;
 
       &.focus{
         border: 2px inset var(--primary-soft);

@@ -4,6 +4,7 @@ import { FeedbackStars } from '../FeedbackStars'
 import Link from 'next/link'
 import { IProduct } from '../../types/IProduct'
 import { useEffect, useState } from 'react'
+import { formatPrice } from '../../../utils/formatPrice'
 
 interface Props {
   product: IProduct;
@@ -19,24 +20,37 @@ export const ProductItem = ({ product }: Props) => {
     setCurrentPrice(product.price - discount)
   },[product])
 
+  const loader = (imageUrl: string) => imageUrl;
+
   return(
-    <Link href="/product" passHref>
+    <Link href={`/Product/${product.id}`} passHref>
       <div className={styles.container}>
         <div className={styles.imageContainer}>
-          <div className={styles.discount}>
-            <span>-{product.discount}%</span>
-          </div>
-          <Image src="/img1.jpg" alt="imagem do produto" layout="fill" objectFit="cover"/>
+
+          { product.discount !== 0 &&
+            <div className={styles.discount}>
+              <span>-{product.discount}%</span>
+            </div> }
+          
+          <Image 
+            loader={() => loader(product.thumb)}
+            src={product.thumb} 
+            alt="imagem do produto" 
+            layout="fill" 
+            objectFit="cover"
+          />
         </div>
 
         <div className={styles.detailsContainer}>
           <span className={styles.productName}>{product.name}</span>
 
-          <FeedbackStars size={25} stars={product.average_rating}/>
+          <FeedbackStars size={25} stars={product.averageRating}/>
 
           <div className={styles.priceContainer}>
-            <span className={styles.oldPrice}>{`R$${product.price}`}</span>
-            <span className={styles.currentPrice}>{`R$${currentPrice}`}</span>
+            { product.discount !== 0 && 
+              <span className={styles.oldPrice}>{formatPrice(product.price)}</span> }
+            
+            <span className={styles.currentPrice}>{formatPrice(currentPrice)}</span>
           </div>
         </div>
       </div>
