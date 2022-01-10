@@ -18,6 +18,18 @@
     gap: 0.5rem;
     padding: 1rem;
 
+    .first_container{
+      position: relative;
+
+      span {
+        position: absolute;
+        bottom: -0.4rem;
+        left: 0rem;
+        font-size: 0.7rem;
+        color: var(--text-soft);
+      }
+    }
+
     .title{
       font-weight: 500;
       font-size: 1rem;
@@ -63,6 +75,7 @@
           align-items: center;
           justify-content: center;
           background-color: var(--background);
+          margin-left: auto;
         }
       }
 
