@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react';
+import { useUser } from '../../contexts/user';
 
 import styles from './style.module.scss'
 
 export const Header = () => {
-  const [ isAuthenticated ] = useState(true);
+  const { UserState } = useUser();
 
   return(
     <header className={styles.container}>
@@ -15,29 +15,30 @@ export const Header = () => {
 
       <nav>
         <a href="#">Contato</a>
-        { !isAuthenticated ?
+        { !UserState.name ?
           <Link href="/SignIn"><a>Entrar</a></Link> :
           <Link href="/"><a>Meu carrinho</a></Link>
         }
         <a href="#" className={styles.announce}>Anunciar</a>
         
-        { isAuthenticated && (
+        { UserState.name && (
           <div className={styles.user_container}>
             <Link href="/Profile">
               <a className={styles.image_container}>
-                <Image 
-                  src="https://github.com/GabrSobral.png" 
-                  alt="Imagem do usuário"
-                  width={48}
-                  height={48}
-                  objectFit="cover"
-                  placeholder="blur"
-                  blurDataURL="https://github.com/GabrSobral.png"
-
-                />
+                { UserState.photo && 
+                  <Image 
+                    src={UserState.photo}
+                    alt="Imagem do usuário"
+                    width={48}
+                    height={48}
+                    objectFit="cover"
+                    placeholder="blur"
+                    blurDataURL="https://github.com/GabrSobral.png"
+                  />
+                }
               </a>
             </Link>
-            <Link href="/Profile"><a>Olá, Gabriel</a></Link>
+            <Link href="/Profile"><a>Olá, {UserState.name}</a></Link>
           </div>
         ) }
       </nav>
