@@ -1,21 +1,32 @@
 import Loading from 'react-loading'
-import Image from 'next/image'
 import { ButtonHTMLAttributes } from 'react'
+import { 
+  MdArrowForward, 
+  MdArrowBack, 
+  MdAddShoppingCart, 
+  MdOutlinePayment,
+  MdCheck } from 'react-icons/md'
 import styles from './style.module.scss'
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement>{
   text: string;
-  imageSrc?: string;
-  imageAlt?: string;
-  imageSize?: number;
+  icon?: { name: "arrowRight" | "arrowLeft" | "shopping_cart" | "payment" | "check", color: string }
   isLoading?: boolean;
+}
+const icons = (icon: string, color: string) => {
+  switch (icon) {
+    case "arrowRight": return <MdArrowForward size={36} color={color}/>;
+    case "arrowLeft": return <MdArrowBack size={36} color={color}/>;
+    case "shopping_cart": return <MdAddShoppingCart size={36} color={color}/>
+    case "payment": return <MdOutlinePayment size={36} color={color}/>
+    case "check": return <MdCheck size={36} color={color}/>
+    default: break;
+  }
 }
 
 export const Button = ({ 
   text, 
-  imageSrc, 
-  imageAlt, 
-  imageSize = 36,
+  icon, 
   isLoading = false,
   ...rest }: Props) => {
   return(
@@ -26,10 +37,9 @@ export const Button = ({
         <>
           {text}
 
-          {imageSrc && 
           <div className={styles.icon}>
-            <Image src={imageSrc} alt={imageAlt} width={imageSize} height={imageSize}/>
-          </div>}
+            {icon?.name && icons(icon?.name, icon?.color)}
+          </div>
         </>
       }
     </button>
