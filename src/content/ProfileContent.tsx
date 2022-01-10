@@ -1,11 +1,15 @@
 import Image from 'next/image'
-import { Button } from '../components/Button'
-import { CartItem } from '../components/CartItem'
+import { useState } from 'react'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
+import { MyAnnounces } from '../components/MyAnnounces'
+import { MyCartProfile } from '../components/MyCartProfile'
+import { MyHistoryProducts } from '../components/MyHistoryProducts'
 import styles from '../styles/profile.module.scss'
 
 export const ProfileContent = () => {
+  const [ content, setContent ] = useState<"MyCart" | "History" | "Announces">("MyCart");
+
   return(
     <div className={styles.container}>
       <Header/>
@@ -25,35 +29,18 @@ export const ProfileContent = () => {
           <span>Santos - São Paulo</span>
         </div>
 
-        <section className={styles.content}>
-          <h3>Meu carrinho</h3>
-          <div className={styles.list}>
-            <CartItem/>
-            <CartItem/>
-            <CartItem/>
-
-            <div className={styles.list_footer}>
-              <span>Total a pagar: R$2.698,00</span>
-            </div>
-          </div>
-
-          <div className={styles.button_container}>
-            <Button
-              imageSrc="/payment_card.svg"
-              imageAlt="Efetuar pagamento"
-              text="Efetuar pagamento"
-              onClick={() => alert("Pagamento efetuado")}
-            />
-          </div>
-        </section>
+        { content === "MyCart" && <MyCartProfile/> }
+        { content === "History" && <MyHistoryProducts/> }
+        { content === "Announces" && <MyAnnounces/> }
 
         <nav>
           <button 
             type="button" 
-            className={`${styles.menu_button} ${styles.active}`}
+            className={`${styles.menu_button} ${ content === "MyCart" && styles.active}`}
+            onClick={() => setContent("MyCart")}
           >
             <Image 
-              src="/my_shopping_cart.svg" 
+              src={`/my_shopping_cart.svg`}
               alt="Meu carrinho" 
               width={38} 
               height={38}
@@ -63,7 +50,8 @@ export const ProfileContent = () => {
 
           <button 
             type="button" 
-            className={`${styles.menu_button} ${styles.active}`}
+            className={`${styles.menu_button} ${  content === "History" && styles.active}`}
+            onClick={() => setContent("History")}
           >
             <Image 
               src="/list.svg" 
@@ -76,7 +64,8 @@ export const ProfileContent = () => {
 
           <button 
             type="button" 
-            className={`${styles.menu_button} ${styles.active}`}
+            className={`${styles.menu_button} ${  content === "Announces" && styles.active}`}
+            onClick={() => setContent("Announces")}
           >
             <Image 
               src="/my_products.svg" 
