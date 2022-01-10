@@ -1,24 +1,30 @@
-import { FormEvent, useRef, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { Header } from "../components/Header";
 import { SignPageBanner } from "../components/SignPageBanner";
-
-import styles from '../styles/signIn.module.scss';
-import { Input } from '../components/Input';
-import { Button } from '../components/Button';
 import { InputData, SignForm } from '../components/SignForm';
+
+import { api } from '../services/api';
+import styles from '../styles/signIn.module.scss';
 
 export const SignUpContent = () => {
   const router = useRouter();
   const [ email, setEmail ] = useState("");
   const [ name, setName ] = useState("");
+  const [ isLoading, setIsLoading ] = useState(false);
 
   async function send(event: FormEvent){
     event.preventDefault();
-    router.push(`/Confirmation?name=${name}&email=${email}`);
+    try{
+      setIsLoading(true);
+      const { data } = await api.post("/users/confirmation", { name, email });
+      router.push(`/Confirmation?name=${name}&email=${email}&token=${data.token}`);
+    } catch {
+      return;
+    } finally { setIsLoading(false); }
   }
 
   const inputs: InputData[] = [
@@ -63,7 +69,8 @@ export const SignUpContent = () => {
             <SignForm 
               inputs={inputs} 
               onSubmit={send}
-              buttonDisabled={!(email && name)}
+              buttonDisabled={!(email && name) || isLoading}
+              isLoading={isLoading}
             />
             <Link href="/SignIn">
               <a>Já faz parte de nós? Clique para entrar</a>

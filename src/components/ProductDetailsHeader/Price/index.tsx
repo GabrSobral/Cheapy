@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { formatPrice } from '../../../../utils/formatPrice'
+import { formatPrice } from '../../../utils/formatPrice'
 import { useProduct } from '../../../contexts/product'
 import styles from './style.module.scss'
 

@@ -4,7 +4,7 @@ import { FeedbackStars } from '../FeedbackStars'
 import Link from 'next/link'
 import { IProduct } from '../../types/IProduct'
 import { useEffect, useState } from 'react'
-import { formatPrice } from '../../../utils/formatPrice'
+import { formatPrice } from '../../utils/formatPrice'
 
 interface Props {
   product: IProduct;

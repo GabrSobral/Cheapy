@@ -6,21 +6,26 @@ export interface InputData {
   value: string;
   setValue: (value: string) => void;
   type: "text" | "email" | "password";
-  title: string
+  title: string;
+  maxLength?: number;
 }
 
 interface Props {
   inputs: InputData[];
-  onSubmit: (event: FormEvent<Element>) => Promise<void>;
+  onSubmit: (event: FormEvent<Element>) => Promise<void> | void;
   buttonText?: string;
   buttonDisabled : boolean;
+  isLoading?: boolean;
+  errorMessage: string;
 }
 
 export const SignForm = ({ 
   inputs, 
   onSubmit, 
   buttonText = "Continuar", 
-  buttonDisabled}: Props) => {
+  buttonDisabled,
+  isLoading = false,
+  errorMessage }: Props) => {
   return(
     <form onSubmit={onSubmit}>
       { inputs.map((input) => 
@@ -30,15 +35,17 @@ export const SignForm = ({
           setValue={input.setValue}
           type={input.type}
           title={input.title}
+          maxLength={input.maxLength}
         />
       ) }
-
+      <span style={{ color: "red", margin: "auto" }}>{errorMessage}</span>
       <Button
         text={buttonText}
         imageSrc="/ArrowRightWhite.svg"
         imageAlt="Seta para prosseguir"
         disabled={buttonDisabled}
         type="submit"
+        isLoading={isLoading}
       />
     </form>
   )

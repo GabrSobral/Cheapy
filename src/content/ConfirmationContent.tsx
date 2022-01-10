@@ -6,9 +6,10 @@ import styles from '../styles/signIn.module.scss'
 
 export const ConfirmationContent = () => {
   const router = useRouter();
+  const { name, email, token } = router.query;
   
   function sendAgain(){
-    router.push(`/Register?name=${router.query.name}&email=${router.query.email}&token=oiamdaoisjdoaism`)
+    router.push(`/Register?name=${name}&email=${email}&token=${token}`)
   }
 
   return(
