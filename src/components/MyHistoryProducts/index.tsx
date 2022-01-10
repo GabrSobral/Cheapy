@@ -1,11 +1,10 @@
 import styles from '../../styles/profile.module.scss'
-import { Button } from '../Button'
 import { CartItem } from '../CartItem'
 
 export const MyHistoryProducts = () => {
   return(
     <section className={styles.content}>
-      <h3>Histórico de compras</h3>
+      <h3>Compras feitas</h3>
       <div className={styles.list}>
         <div className={styles.list_container}>
           <CartItem isHistory/>

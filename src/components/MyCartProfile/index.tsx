@@ -23,8 +23,7 @@ export const MyCartProfile = () => {
 
       <div className={styles.button_container}>
         <Button
-          imageSrc="/payment_card.svg"
-          imageAlt="Efetuar pagamento"
+          icon={{ name: "payment", color: "#ffffff" }}
           text="Efetuar pagamento"
           onClick={() => alert("Pagamento efetuado")}
         />

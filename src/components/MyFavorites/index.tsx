@@ -2,7 +2,7 @@ import styles from '../../styles/profile.module.scss'
 import { IProduct } from '../../types/IProduct'
 import { ProductItem } from '../ProductItem'
 
-export const MyAnnounces = () => {
+export const MyFavorites = () => {
   const product: IProduct = {
     id: "asd213d12",
     name: "Nome de teste",
@@ -21,12 +21,13 @@ export const MyAnnounces = () => {
   }
   return(
     <section className={styles.content}>
-      <h3>Meus anúncios</h3>
+      <h3>Meus favoritos</h3>
       <div className={styles.announces_list}>
-        <ProductItem product={product} isEditable />
-        <ProductItem product={product} isEditable />
-        <ProductItem product={product} isEditable />
-        <ProductItem product={product} isEditable />
+        <ProductItem product={product}/>
+        <ProductItem product={product}/>
+        <ProductItem product={product}/>
+        <ProductItem product={product}/>
+        <ProductItem product={product}/>
       </div>
     </section>
   )
