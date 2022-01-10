@@ -71,6 +71,7 @@ export const SignUpContent = () => {
               onSubmit={send}
               buttonDisabled={!(email && name) || isLoading}
               isLoading={isLoading}
+              errorMessage=""
             />
             <Link href="/SignIn">
               <a>Já faz parte de nós? Clique para entrar</a>

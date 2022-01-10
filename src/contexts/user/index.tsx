@@ -3,8 +3,10 @@ import {
   Dispatch, 
   ReactNode,
   useContext,
+  useEffect,
   useReducer
 } from "react";
+import { IUser } from "../../types/IUser";
 
 import { IUserState, IUserAction, UserReducer } from "./reducer";
 
@@ -21,6 +23,12 @@ export function UserProvider({ children }: { children: ReactNode }){
     photo: ""
   };
   const [ UserState, UserDispatch ] = useReducer(UserReducer, initialstate);
+
+  useEffect(() => {
+    UserDispatch({ type: "setUser", payload: { user: { 
+      name: "Gabriel Sobral dos Santos",
+      photo: "https://github.com/GabrSobral.png" } } });
+  },[UserDispatch])
 
   return(
     <UserContext.Provider
