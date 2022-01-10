@@ -139,8 +139,7 @@ export const RegisterContent = () => {
               <Button
                 isLoading={isLoading}
                 text="Finalizar"
-                imageSrc="/ArrowRightWhite.svg"
-                imageAlt="Seta para a direita"
+                icon={{ name: "check", color: "#ffffff" }}
                 onClick={handleFinishSignUp}
                 disabled={isLoading}
               />

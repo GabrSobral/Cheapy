@@ -26,7 +26,7 @@ export const CartItem = ({ isHistory = false }: Props) => {
             </a>
           </Link>
 
-          <span>Comprado em: 28/12/2021 às 15:48</span>
+          { isHistory && <span>Comprado em: 28/12/2021 às 15:48</span> }
         </div>
 
         <div className={styles.quantity_price_container}>

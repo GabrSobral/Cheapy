@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { useEffect, useState } from 'react'
 import { formatPrice } from '../../../utils/formatPrice'
 import { useProduct } from '../../../contexts/product'
@@ -33,12 +33,11 @@ export const Price = () => {
       </div>
       
       <button type="button" onClick={() => setIsFavorited(prev => !prev)}>
-        <Image 
-          src={`/favorite_${isFavorited ? "filled" : "outlined"}.svg`} 
-          alt="ícone de adicionar aos favorito"
-          width={36}
-          height={36}
-        />
+        { isFavorited ?
+          <MdFavorite size={36} color="#E45353"/>
+          :
+          <MdFavoriteBorder size={36} color="#999999"/>
+        } 
       </button>
     </div>
   )

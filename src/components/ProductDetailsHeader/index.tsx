@@ -29,8 +29,7 @@ export const ProductDetailsHeader = () => {
 
           <Button
             text="Adicionar ao carrinho"
-            imageAlt="Ícone de carrinho de compras"
-            imageSrc="/shopping_cart.svg"
+            icon={{ name: "shopping_cart", color: "#ffffff" }}
           />
         </div>
       </div>

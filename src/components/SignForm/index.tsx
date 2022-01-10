@@ -41,8 +41,7 @@ export const SignForm = ({
       <span style={{ color: "red", margin: "auto" }}>{errorMessage}</span>
       <Button
         text={buttonText}
-        imageSrc="/ArrowRightWhite.svg"
-        imageAlt="Seta para prosseguir"
+        icon={{ name: "arrowRight", color: "#ffffff" }}
         disabled={buttonDisabled}
         type="submit"
         isLoading={isLoading}

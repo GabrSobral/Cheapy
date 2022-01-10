@@ -22,6 +22,10 @@
       position: relative;
 
       span {
+        display: -moz-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        text-overflow: ellipsis;
         position: absolute;
         bottom: -0.4rem;
         left: 0rem;
