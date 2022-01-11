@@ -1,11 +1,11 @@
 .container{
-  width: 18rem;
+  flex: 1;
+  min-width: 16rem;
   border-radius: 7px;
   background-color: var(--background);
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.186);
   transition: 0.2s ease;
   overflow: hidden;
-  cursor: pointer;
   
   &:hover{
     transform: scale(1.05);
@@ -15,8 +15,11 @@
     position: relative;
     flex: 0.6;
     min-height: 15rem;
+    z-index: 5;
+    cursor: pointer;
 
     .discount{
+      z-index: 10;
       position: absolute;
       right: 1rem;
       top: 1rem;
@@ -29,18 +32,26 @@
 
       span {
         color: var(--white);
-        font-size: 0.7rem;
+        font-size: 1rem;
+        font-weight: 500;
       }
     }
   }
 
   .detailsContainer{
+    position: relative;
     flex: 0.4;
     padding: 1rem;
 
-    span:first-child{
+    .productName{
+      display: -webkit-box;
+      -webkit-line-clamp: 2;  // <- you can change rows number
+      -webkit-box-orient: vertical;
       font-weight: 500;
       font-size: 1rem;
+      word-wrap: break-word;
+      text-overflow: ellipsis;
+      overflow: hidden;
 
       &:hover{
         text-decoration: underline;
@@ -64,6 +75,16 @@
         font-size: 1.5rem;
         color: var(--text);
       }
+    }
+
+    .edit{
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      color: var(--primary);
+      font-weight: 500;
+      font-size: 1rem;
+      background-color: transparent;
     }
   }
 }

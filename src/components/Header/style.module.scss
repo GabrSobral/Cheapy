@@ -11,6 +11,12 @@
   z-index: 50;
   background-color: var(--background);
 
+  a{
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+
   nav{
     display: flex;
     gap: 1rem;
@@ -24,7 +30,27 @@
         color: var(--white);
         padding: 0.75rem 1.25rem;
         border-radius: 1.5rem;
+        text-decoration: none;
+        transition: filter 0.3s;
+
+        &:hover {
+          filter: brightness(0.9);
+        }
       }
+    }
+  }
+
+  .user_container{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+    .image_container {
+      border: 1px solid var(--border);
+      height: 3rem;
+      width: 3rem;
+      border-radius: 1.5rem;
+      overflow: hidden;
     }
   }
 }

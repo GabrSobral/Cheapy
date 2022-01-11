@@ -1,5 +1,4 @@
-import { useRef, useState } from 'react';
-import Image from 'next/image';
+import { useState } from 'react';
 import Link from 'next/link';
 
 import { Header } from '../components/Header';
@@ -7,10 +6,12 @@ import { SignPageBanner } from '../components/SignPageBanner';
 
 import styles from '../styles/signIn.module.scss'
 import { InputData, SignForm } from '../components/SignForm';
+import { MdArrowBack } from 'react-icons/md';
 
 export const SignInContent = () => {
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
+  const [ errorMessage, setErrorMessage ] = useState("");
 
   const inputs: InputData[] = [
     {
@@ -36,12 +37,7 @@ export const SignInContent = () => {
           <div className={styles.wrapper}>
             <Link href="/">
               <a className={styles.go_back_button}>
-                <Image
-                  src="/ArrowLeft.svg"
-                  alt="Seta para voltar"
-                  width={24}
-                  height={24}
-                />
+                <MdArrowBack size={24} color="#6E0AD6"/>
                 Voltar à tela principal
               </a>
             </Link>
@@ -51,7 +47,8 @@ export const SignInContent = () => {
               <span>Ao entrar, você poderá ter acesso a toda a plataforma!</span>
             </div>
 
-            <SignForm 
+            <SignForm
+              errorMessage={errorMessage}
               inputs={inputs} 
               onSubmit={async () => {}}
               buttonDisabled={!(email && password)}

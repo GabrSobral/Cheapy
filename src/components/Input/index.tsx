@@ -2,12 +2,13 @@ import styles from './style.module.scss'
 
 interface InputCreateProps{
   title: string;
-  value: string | undefined;
+  value: string | undefined | number;
   setValue: (value: string) => void;
-  type: 'text' | 'textarea' | 'email' | 'password';
+  type: 'text' | 'textarea' | 'email' | 'password' | "number";
+  maxLength?: number;
 }
 
-export function Input({ value, setValue, type, title }: InputCreateProps){
+export function Input({ value, setValue, type, title, maxLength = 240 }: InputCreateProps){
   return(
     <div className={styles.input_container}>
       <span className={value ? styles.filled : ''}>{title}</span>
@@ -18,6 +19,7 @@ export function Input({ value, setValue, type, title }: InputCreateProps){
             onChange={event => setValue(event.target.value)}
             className={value ? styles.filled : ''}
             value={value}
+            maxLength={maxLength}
           />
         : 
           <textarea

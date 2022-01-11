@@ -7,10 +7,15 @@
     align-items: center;
 
     button{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
       padding: 0.8rem 1rem;
       border-radius: 7px;
       background-color: var(--primary);
       color: var(--white);
+      font-weight: 500;
 
       &:hover {
         transform: scale(1.05);

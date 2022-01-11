@@ -6,6 +6,7 @@ import { api } from '../../services/api'
 import { useProduct } from '../../contexts/product'
 import { IFeedback } from '../../types/IFeedback'
 import { CreateFeedbackModal } from './CreateFeedbackModal'
+import { MdOutlineCreate } from 'react-icons/md'
 
 export const Feedbacks = () => {
   const { product } = useProduct();
@@ -32,6 +33,7 @@ export const Feedbacks = () => {
 
         <button type="button" onClick={() => setIsModalVisible(p => !p)}>
           Escrever avaliação
+          <MdOutlineCreate size={24} color="#ffffff"/>
         </button>
       </div>
 

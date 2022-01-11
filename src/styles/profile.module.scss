@@ -1,0 +1,105 @@
+.container {
+  main{
+    width: 100%;
+    padding: 1rem 2rem;
+    min-height: calc(100vh - 4rem);
+    margin-top: 4rem;
+
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 14rem auto 14rem;
+    grid-area: auto;
+
+    .image_container {
+      display: flex;
+      flex-direction: column;
+
+      .image{
+        position: relative;
+        width: 14rem;
+        height: 14rem;
+        border-radius: 10rem;
+        overflow: hidden;
+        border: 2px solid var(--primary);
+        margin-bottom: 1.4rem;
+      }
+
+      .username{
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+      span:last-child{
+        color: var(--text-soft);
+      }
+    }
+
+    .content {
+      h3{
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+        font-size: 1.4rem;
+      }
+      .announces_list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .list {
+        border-radius: 7px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+
+        .list_container {
+          flex: 1;
+          max-height: calc(100vh - 13rem);
+          overflow-y: scroll;
+        }
+
+        .list_footer {
+          padding: 0.5rem;
+          background-color: var(--background);
+          filter: brightness(0.92);
+          display: flex;
+          justify-content: flex-end;
+          
+          span {
+            font-weight: 500;
+            font-size: 1rem;
+          }
+        }
+      }
+      .button_container{
+        width: 18rem;
+        margin: 1rem 0 0 auto;
+      }
+    }
+
+    nav {
+      position: sticky;
+      top: 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      height: 18rem;
+
+      button {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        width: 100%;
+        padding: 1rem;
+        border-radius: 7px;
+        border: 2px solid var(--primary);
+        background-color: var(--background);
+        color: var(--primary);
+        text-align: left;
+        font-size: 1rem;
+
+        &.active {
+          background-color: var(--primary);
+          color: var(--white);
+        }
+      }
+    }
+  }
+}

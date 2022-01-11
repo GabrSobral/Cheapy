@@ -4,13 +4,14 @@ import { FeedbackStars } from '../FeedbackStars'
 import Link from 'next/link'
 import { IProduct } from '../../types/IProduct'
 import { useEffect, useState } from 'react'
-import { formatPrice } from '../../../utils/formatPrice'
+import { formatPrice } from '../../utils/formatPrice'
 
 interface Props {
   product: IProduct;
+  isEditable?: boolean;
 }
 
-export const ProductItem = ({ product }: Props) => {
+export const ProductItem = ({ product, isEditable = false }: Props) => {
   const [ currentPrice, setCurrentPrice ] = useState(0);
 
   useEffect(() => {
@@ -23,26 +24,29 @@ export const ProductItem = ({ product }: Props) => {
   const loader = (imageUrl: string) => imageUrl;
 
   return(
-    <Link href={`/Product/${product.id}`} passHref>
       <div className={styles.container}>
-        <div className={styles.imageContainer}>
+        <Link href={`/Product/${product.id}`} passHref>
+          <div className={styles.imageContainer}>
 
-          { product.discount !== 0 &&
-            <div className={styles.discount}>
-              <span>-{product.discount}%</span>
-            </div> }
-          
-          <Image 
-            loader={() => loader(product.thumb)}
-            src={product.thumb} 
-            alt="imagem do produto" 
-            layout="fill" 
-            objectFit="cover"
-          />
-        </div>
+            { product.discount !== 0 &&
+              <div className={styles.discount}>
+                <span>-{product.discount}%</span>
+              </div> }
+
+            <Image 
+              loader={() => loader(product.thumb)}
+              src={product.thumb} 
+              alt="imagem do produto" 
+              layout="fill" 
+              objectFit="cover"
+            />
+          </div>
+        </Link>
 
         <div className={styles.detailsContainer}>
-          <span className={styles.productName}>{product.name}</span>
+        <Link href={`/Product/${product.id}`}>
+          <a className={styles.productName}>{product.name}</a>
+        </Link>
 
           <FeedbackStars size={25} stars={product.averageRating}/>
 
@@ -52,8 +56,11 @@ export const ProductItem = ({ product }: Props) => {
             
             <span className={styles.currentPrice}>{formatPrice(currentPrice)}</span>
           </div>
+
+          { isEditable &&  
+            <button type="button" className={styles.edit}>Editar</button>
+          }
         </div>
       </div>
-    </Link>
   )
 }

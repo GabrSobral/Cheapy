@@ -1,24 +1,30 @@
-import { FormEvent, useRef, useState } from 'react'
-import Image from "next/image";
+import { FormEvent, useState } from 'react'
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { Header } from "../components/Header";
 import { SignPageBanner } from "../components/SignPageBanner";
-
-import styles from '../styles/signIn.module.scss';
-import { Input } from '../components/Input';
-import { Button } from '../components/Button';
 import { InputData, SignForm } from '../components/SignForm';
+
+import { api } from '../services/api';
+import styles from '../styles/signIn.module.scss';
+import { MdArrowBack } from 'react-icons/md';
 
 export const SignUpContent = () => {
   const router = useRouter();
   const [ email, setEmail ] = useState("");
   const [ name, setName ] = useState("");
+  const [ isLoading, setIsLoading ] = useState(false);
 
   async function send(event: FormEvent){
     event.preventDefault();
-    router.push(`/Confirmation?name=${name}&email=${email}`);
+    try{
+      setIsLoading(true);
+      const { data } = await api.post("/users/confirmation", { name, email });
+      router.push(`/Confirmation?name=${name}&email=${email}&token=${data.token}`);
+    } catch {
+      return;
+    } finally { setIsLoading(false); }
   }
 
   const inputs: InputData[] = [
@@ -45,12 +51,7 @@ export const SignUpContent = () => {
           <div className={styles.wrapper}>
             <Link href="/">
               <a className={styles.go_back_button}>
-                <Image
-                  src="/ArrowLeft.svg"
-                  alt="Seta para voltar"
-                  width={24}
-                  height={24}
-                />
+                <MdArrowBack size={24} color="#6E0AD6"/>
                 Voltar à tela principal
               </a>
             </Link>
@@ -63,7 +64,9 @@ export const SignUpContent = () => {
             <SignForm 
               inputs={inputs} 
               onSubmit={send}
-              buttonDisabled={!(email && name)}
+              buttonDisabled={!(email && name) || isLoading}
+              isLoading={isLoading}
+              errorMessage=""
             />
             <Link href="/SignIn">
               <a>Já faz parte de nós? Clique para entrar</a>
