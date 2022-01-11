@@ -2,9 +2,9 @@ import styles from './style.module.scss'
 
 interface InputCreateProps{
   title: string;
-  value: string | undefined;
+  value: string | undefined | number;
   setValue: (value: string) => void;
-  type: 'text' | 'textarea' | 'email' | 'password';
+  type: 'text' | 'textarea' | 'email' | 'password' | "number";
   maxLength?: number;
 }
 
