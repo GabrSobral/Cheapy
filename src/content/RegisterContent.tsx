@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from 'react'
-import Image from 'next/image'
+import { MdArrowBack } from 'react-icons/md'
 import { useRouter } from 'next/router'
 import { cpf } from 'cpf-cnpj-validator'
 
@@ -99,7 +99,7 @@ export const RegisterContent = () => {
               className={styles.go_back_button} 
               onClick={() => setPage(p => p-1)}
             >
-              <Image src="/ArrowLeft.svg" width={24} height={24} alt="arrow left"/>
+              <MdArrowBack size={24} color="#6E0AD6"/>
               Voltar à etapa anterior
             </button>
           }

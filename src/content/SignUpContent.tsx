@@ -1,5 +1,4 @@
 import { FormEvent, useState } from 'react'
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -9,6 +8,7 @@ import { InputData, SignForm } from '../components/SignForm';
 
 import { api } from '../services/api';
 import styles from '../styles/signIn.module.scss';
+import { MdArrowBack } from 'react-icons/md';
 
 export const SignUpContent = () => {
   const router = useRouter();
@@ -51,12 +51,7 @@ export const SignUpContent = () => {
           <div className={styles.wrapper}>
             <Link href="/">
               <a className={styles.go_back_button}>
-                <Image
-                  src="/ArrowLeft.svg"
-                  alt="Seta para voltar"
-                  width={24}
-                  height={24}
-                />
+                <MdArrowBack size={24} color="#6E0AD6"/>
                 Voltar à tela principal
               </a>
             </Link>
