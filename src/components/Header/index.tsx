@@ -12,7 +12,15 @@ export const Header = () => {
   return(
     <header className={styles.container}>
       <Link href="/">
-        <a><Image src="/Logo.svg" alt="Logo" height={50} width={120}/></a>
+        <a>
+          <Image 
+            src="/Logo.svg" 
+            alt="Logo" 
+            height={50} 
+            width={120}
+            unoptimized
+          />
+        </a>
       </Link>
 
       <nav>

@@ -29,7 +29,7 @@ export const FeedbackItem = ({ feedback }: Props) => {
               />
             }
           </div>
-          <span>{feedback.user.name}</span>
+          <span>{feedback.user.name} {feedback.user.id === GetUserId() && "(Eu)"}</span>
         </div>
 
         <FeedbackStars size={32} stars={feedback.stars}/>

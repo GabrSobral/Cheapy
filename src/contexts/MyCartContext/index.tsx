@@ -7,10 +7,12 @@ import {
   useReducer
 } from "react";
 import { api } from "../../services/api";
+import { useUser } from '../user'
 import { ICartItem } from "../../types/ICartItem";
 import { IProduct } from "../../types/IProduct";
 
 import { IMyCartAction, IMyCartState, MyCartReducer } from "./reducer";
+import { getToken } from "../../utils/JsonWebToken";
 
 interface MyCartContextProps {
   MyCartState: IMyCartState;
@@ -28,6 +30,8 @@ export function MyCartProvider({ children }: { children: ReactNode }){
   const [ MyCartState, MyCartDispatch ] = useReducer(MyCartReducer, initialstate);
 
   useEffect(() => {
+    if(!getToken()) return;
+
     (async () => {
       const { data } = await api.get("/shopping/my-list");
       MyCartDispatch({ type: "setMyCartItems", payload: { data } });

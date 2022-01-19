@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react'
+import Loading from 'react-loading'
+
 import { useProduct } from '../../../contexts/product';
 import { useUser } from '../../../contexts/user';
 import { api } from '../../../services/api';
@@ -7,18 +9,27 @@ import { IFeedback } from '../../../types/IFeedback';
 import { Input } from '../../Input';
 import { ModalContainer } from '../../ModalContainer'
 import { StarsButtons } from './StarsButtons';
+
 import styles from './style.module.scss'
 
 interface Props {
   closeModal: () => void;
   addFeedbackToState: (feedback: IFeedback) => void;
+  myFeedback?: IFeedback;
 }
 
-export const CreateFeedbackModal = ({ closeModal, addFeedbackToState }: Props) => {
-  const [ title, setTitle ] = useState("");
-  const [ message, setMessage ] = useState("");
-  const [ recomendation, setRecomendation ] = useState<boolean | null>(null);
-  const [ stars, setStars ] = useState<number | null>(null);
+export const CreateFeedbackModal = ({ 
+  closeModal, 
+  addFeedbackToState, 
+  myFeedback 
+}: Props) => {
+  const [ isLoading, setIsLoading ] = useState(false);
+
+  const [ title, setTitle ] = useState(myFeedback?.title || "");
+  const [ message, setMessage ] = useState(myFeedback?.message || "");
+  const [ stars, setStars ] = useState<number | null>(myFeedback?.stars || null);
+  const [ recomendation, setRecomendation ] = useState<boolean | null>(
+    myFeedback?.recomendation == undefined ? null : (!!myFeedback?.recomendation));
 
   const { product } = useProduct();
   const { UserState } = useUser();
@@ -35,7 +46,8 @@ export const CreateFeedbackModal = ({ closeModal, addFeedbackToState }: Props) =
 
   const createFeedback = async () => {
     if(!product) return;
-
+    
+    setIsLoading(true);
     const { data } = await api.post(`/feedbacks/${product?.id}`, {
       title,
       recomendation,
@@ -56,6 +68,7 @@ export const CreateFeedbackModal = ({ closeModal, addFeedbackToState }: Props) =
       }
     }
     addFeedbackToState(newFeedback);
+    setIsLoading(true);
     closeModal();
   }
 
@@ -123,10 +136,12 @@ export const CreateFeedbackModal = ({ closeModal, addFeedbackToState }: Props) =
             <button 
               type="button" 
               className={styles.submitButton}
-              disabled={!(title && message && (recomendation !== null) && (stars !== null))}
+              disabled={ isLoading || !(title && message && (recomendation !== null) && (stars !== null))}
               onClick={createFeedback}
             >
-              Concluir
+              { isLoading ? <Loading type="spin" width={32} height={32} color="#FFF"/>
+              : "Concluir"}
+              
             </button>
           </form>
          
