@@ -1,19 +1,45 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import Link from 'next/link';
 
 import { Header } from '../components/Header';
 import { SignPageBanner } from '../components/SignPageBanner';
 
 import styles from '../styles/signIn.module.scss'
-import { InputData, SignForm } from '../components/SignForm';
+import { SignForm } from '../components/SignForm';
 import { MdArrowBack } from 'react-icons/md';
+import { InputCreateProps } from '../components/Input';
+import { api } from '../services/api';
+import { useUser } from '../contexts/user';
+import { useRouter } from 'next/router';
+import { setToken } from '../utils/JsonWebToken';
 
 export const SignInContent = () => {
+  const router = useRouter();
+  const { UserDispatch } = useUser();
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
   const [ errorMessage, setErrorMessage ] = useState("");
+  const [ isLoading, setIsLoading ] = useState(false);
 
-  const inputs: InputData[] = [
+  const SignIn = async (event: FormEvent) => {
+    event.preventDefault();
+
+    try{
+      setIsLoading(true);
+      const { data } = await api.post("/users/authenticate", { email, password });
+      UserDispatch({ type: "setUser", payload: { user: { 
+        name: data.user.name,
+        photo: data.user.photo }}
+      });
+      setToken(data.token);
+      router.push("/Profile");
+    } catch(error: any) {
+      setErrorMessage(error.response.data.message);
+      setIsLoading(false);
+    }
+  }
+
+  const inputs: InputCreateProps[] = [
     {
       value: email, 
       setValue: (value) => setEmail(value), 
@@ -50,9 +76,10 @@ export const SignInContent = () => {
             <SignForm
               errorMessage={errorMessage}
               inputs={inputs} 
-              onSubmit={async () => {}}
-              buttonDisabled={!(email && password)}
+              onSubmit={SignIn}
+              buttonDisabled={!(email && password) || isLoading}
               buttonText="Entrar"
+              isLoading={isLoading}
             />
             <Link href="/SignUp">
               <a>Não possui uma conta? Clique para se cadastrar</a>
