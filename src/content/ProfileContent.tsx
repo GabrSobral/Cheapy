@@ -37,7 +37,7 @@ export const ProfileContent = () => {
           <span className={styles.username}>Gabriel Sobral dos Santos</span>
           <span>Santos - São Paulo</span>
         </div>
-
+      
         { content === "MyCart" && <MyCartProfile/> }
         { content === "History" && <MyHistoryProducts/> }
         { content === "Announces" && <MyAnnounces/> }
