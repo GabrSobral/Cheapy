@@ -20,17 +20,41 @@
 
     .first_container{
       position: relative;
+      display: flex;
+      flex-direction: column;
 
       span {
         display: -moz-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 2;
         text-overflow: ellipsis;
         position: absolute;
         bottom: -0.4rem;
         left: 0rem;
         font-size: 0.7rem;
         color: var(--text-soft);
+      }
+
+      .delete_item {
+        transform: translateY(0.5rem);
+        border-radius: 7px;
+        border: 2px solid var(--warning);
+        background-color: var(--background);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-top: auto;
+
+        &:hover {
+          filter: brightness(1);
+          background-color: var(--warning);
+          
+          svg {
+            fill: var(--white)
+          }
+        }
       }
     }
 
