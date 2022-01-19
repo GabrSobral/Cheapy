@@ -11,5 +11,9 @@ export function parseJwt (token: string) {
 };
 
 export const GetUserId = () => {
-  return parseJwt(getToken());
+  const token = getToken(); 
+  
+  if(!token) return;
+
+  return parseJwt(token).Id;
 }

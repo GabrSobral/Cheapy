@@ -27,11 +27,13 @@ export function UserProvider({ children }: { children: ReactNode }){
   const [ UserState, UserDispatch ] = useReducer(UserReducer, initialstate);
 
   useEffect(() => {
+    if(!GetUserId()) return;
+    
     (async () => {
-      const { data } = await api.get(`users/${GetUserId()}`)
+      const { data } = await api.get(`users/show?isSoft=true`)
       UserDispatch({ type: "setUser", payload: { user: { 
         name: data.name,
-        photo: data.thumb } } });
+        photo: data.photo } } });
     })()
   },[UserDispatch])
 

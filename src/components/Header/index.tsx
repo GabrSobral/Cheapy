@@ -38,7 +38,7 @@ export const Header = () => {
                 }
               </a>
             </Link>
-            <Link href="/Profile"><a>Olá, {UserState.name}</a></Link>
+            <Link href="/Profile"><a>Olá, {UserState.name.split(" ")[0]}</a></Link>
           </div>
         ) }
       </nav>
