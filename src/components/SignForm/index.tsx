@@ -1,17 +1,9 @@
 import { FormEvent } from "react"
 import { Button } from "../Button"
-import { Input } from "../Input"
-
-export interface InputData {
-  value: string;
-  setValue: (value: string) => void;
-  type: "text" | "email" | "password";
-  title: string;
-  maxLength?: number;
-}
+import { Input, InputCreateProps } from "../Input"
 
 interface Props {
-  inputs: InputData[];
+  inputs: InputCreateProps[];
   onSubmit: (event: FormEvent<Element>) => Promise<void> | void;
   buttonText?: string;
   buttonDisabled : boolean;
@@ -36,9 +28,11 @@ export const SignForm = ({
           type={input.type}
           title={input.title}
           maxLength={input.maxLength}
+          disabled={input.disabled}
         />
       ) }
-      <span style={{ color: "red", margin: "auto" }}>{errorMessage}</span>
+      {errorMessage && 
+        <span style={{ color: "red", margin: "auto" }}>{errorMessage}</span>}
       <Button
         text={buttonText}
         icon={{ name: "arrowRight", color: "#ffffff" }}

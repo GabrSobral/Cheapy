@@ -5,6 +5,10 @@ export type ISignUpState = {
   confirmationPassword: string,
   CPF: string;
   token: string;
+  CEP: string;
+  city: string;
+  state: string;
+  country: string;
 }
 
 export type ISignUpAction = 
@@ -14,6 +18,10 @@ export type ISignUpAction =
 | { type: 'setConfirmation', payload: { data: string } }
 | { type: 'setCPF', payload: { data: string } }
 | { type: 'setToken', payload: { data: string } }
+| { type: 'setCity', payload: { data: string } }
+| { type: 'setCEP', payload: { data: string } }
+| { type: 'setState', payload: { data: string } }
+| { type: 'setCountry', payload: { data: string } }
 
 export function SignUpReducer(state: ISignUpState, action: ISignUpAction): ISignUpState{
   switch(action.type){
@@ -29,5 +37,13 @@ export function SignUpReducer(state: ISignUpState, action: ISignUpAction): ISign
       return { ...state, CPF: action.payload.data }
     case 'setToken': 
       return { ...state, token: action.payload.data }
+    case 'setCity': 
+      return { ...state, city: action.payload.data }
+    case 'setCEP': 
+      return { ...state, CEP: action.payload.data }
+    case 'setState': 
+      return { ...state, state: action.payload.data }
+    case 'setCountry': 
+      return { ...state, country: action.payload.data }
   }
 }
