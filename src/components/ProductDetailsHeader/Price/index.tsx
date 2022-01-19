@@ -7,13 +7,13 @@ import styles from './style.module.scss'
 export const Price = () => {
   const { product } = useProduct();
   const [ isFavorited, setIsFavorited ] = useState(false);
-  const [ finalPrice, setFinaLPrice ] = useState(0);
+  const [ finalPrice, setFinalPrice ] = useState(0);
 
   useEffect(() => {
     if(!product?.price) return;
     
     const discount = (product.price * product.discount)/100
-    setFinaLPrice(product.price - discount)
+    setFinalPrice(product.price - discount)
   },[product])
 
   return(

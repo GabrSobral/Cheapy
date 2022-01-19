@@ -1,5 +1,3 @@
-import Image from 'next/image'
-import { useEffect } from 'react'
 import { useProduct } from '../../contexts/product'
 import { FeedbackAndDiscount } from './FeedbackAndDiscount'
 import { Images } from './Images'
@@ -8,9 +6,17 @@ import { Tags } from './Tags'
 
 import styles from './style.module.scss' 
 import { Button } from '../Button'
+import { useMyCart } from '../../contexts/MyCartContext'
+import { useEffect, useRef, useState } from 'react'
 
 export const ProductDetailsHeader = () => {
   const { product } = useProduct();
+  const { addToCart, MyCartState } = useMyCart();
+  const [ alreadyInCart, setAlreadyInCart ] = useState(false);
+
+  useEffect(() => {
+    setAlreadyInCart(MyCartState.myCartItems.some(item => item.id === product?.id))
+  },[MyCartState, product?.id])
 
   return(
     <section className={styles.container}>
@@ -28,8 +34,10 @@ export const ProductDetailsHeader = () => {
           <Price/>
 
           <Button
-            text="Adicionar ao carrinho"
+            text={alreadyInCart ? "Produto ja está no carrinho" : "Adicionar ao carrinho"}
             icon={{ name: "shopping_cart", color: "#ffffff" }}
+            onClick={() => product && addToCart(product)}
+            disabled={alreadyInCart}
           />
         </div>
       </div>
