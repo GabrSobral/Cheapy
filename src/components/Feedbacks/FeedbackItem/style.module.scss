@@ -5,6 +5,10 @@
   border: 2px solid var(--primary);
   padding: 1rem 1rem 3rem 1rem;
 
+  &.my {
+    border-color: var(--secondary);
+  }
+
   .top{
     display: flex;
     align-items: center;

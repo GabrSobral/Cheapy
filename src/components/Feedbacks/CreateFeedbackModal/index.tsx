@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react'
 import { useProduct } from '../../../contexts/product';
+import { useUser } from '../../../contexts/user';
 import { api } from '../../../services/api';
 import { IFeedback } from '../../../types/IFeedback';
 import { Input } from '../../Input';
@@ -20,6 +21,7 @@ export const CreateFeedbackModal = ({ closeModal, addFeedbackToState }: Props) =
   const [ stars, setStars ] = useState<number | null>(null);
 
   const { product } = useProduct();
+  const { UserState } = useUser();
 
   const modal = useRef<HTMLDivElement>(null);
 
@@ -49,8 +51,8 @@ export const CreateFeedbackModal = ({ closeModal, addFeedbackToState }: Props) =
       createdAt: data.createdAt,
       user: {
         id: data.userId,
-        name: "Gabriel Sobral Dos Santos",
-        photo: "https://github.com/GabrSobral.png"
+        name: UserState.name,
+        photo: UserState.photo
       }
     }
     addFeedbackToState(newFeedback);

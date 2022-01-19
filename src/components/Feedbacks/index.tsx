@@ -1,26 +1,33 @@
 import { FeedbackItem } from './FeedbackItem'
 import styles from './style.module.scss'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { api } from '../../services/api'
 import { useProduct } from '../../contexts/product'
 import { IFeedback } from '../../types/IFeedback'
 import { CreateFeedbackModal } from './CreateFeedbackModal'
 import { MdOutlineCreate } from 'react-icons/md'
+import { GetUserId } from '../../utils/parseJWT'
 
 export const Feedbacks = () => {
   const { product } = useProduct();
   const [ feedbacks, setFeedbacks ] = useState<IFeedback[]>([]);
+  const [ myFeedback, setMyFeedback ] = useState<IFeedback>();
   const [ isModalVisible, setIsModalVisible ] = useState(false);
+  const myId = useRef(GetUserId()).current;
 
   useEffect(() => {
     if(!product) return;
     
     (async () => {
-      const { data } = await api.get(`/feedbacks/${product?.id}`);
-      setFeedbacks(data)
+      const { data } = await api.get<IFeedback[]>(`/feedbacks/${product?.id}`);
+      data.forEach(item => {
+        item.user.id === myId ?
+          setMyFeedback(item) :
+          setFeedbacks(prev => [ ...prev, item ])
+      })
     })();
-  },[product])
+  },[product, myId])
 
   const addFeedbackToState = (newFeedback: IFeedback) => {
     setFeedbacks(prev => [newFeedback, ...prev])
@@ -43,6 +50,7 @@ export const Feedbacks = () => {
       </div>
 
       <div className={styles.feedbacks_list}>
+        { myFeedback && <FeedbackItem feedback={myFeedback}/> }
         {feedbacks.map(item => <FeedbackItem key={item.user.id} feedback={item}/>)}
       </div>
     </section>
