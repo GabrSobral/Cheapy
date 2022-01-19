@@ -22,11 +22,16 @@ export const Feedbacks = () => {
     })();
   },[product])
 
+  const addFeedbackToState = (newFeedback: IFeedback) => {
+    setFeedbacks(prev => [newFeedback, ...prev])
+  }
+
   return(
     <section className={styles.feedbacks_container}>
       { isModalVisible && 
         <CreateFeedbackModal
           closeModal={() => setIsModalVisible(false)}
+          addFeedbackToState={addFeedbackToState}
         /> }
       <div className={styles.feedbacks_container_top}>
         <h3>Avaliações</h3>

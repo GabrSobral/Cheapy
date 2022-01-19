@@ -1,5 +1,8 @@
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react'
+import { useProduct } from '../../../contexts/product';
+import { api } from '../../../services/api';
+import { IFeedback } from '../../../types/IFeedback';
 import { Input } from '../../Input';
 import { ModalContainer } from '../../ModalContainer'
 import { StarsButtons } from './StarsButtons';
@@ -7,13 +10,16 @@ import styles from './style.module.scss'
 
 interface Props {
   closeModal: () => void;
+  addFeedbackToState: (feedback: IFeedback) => void;
 }
 
-export const CreateFeedbackModal = ({ closeModal }: Props) => {
+export const CreateFeedbackModal = ({ closeModal, addFeedbackToState }: Props) => {
   const [ title, setTitle ] = useState("");
   const [ message, setMessage ] = useState("");
   const [ recomendation, setRecomendation ] = useState<boolean | null>(null);
   const [ stars, setStars ] = useState<number | null>(null);
+
+  const { product } = useProduct();
 
   const modal = useRef<HTMLDivElement>(null);
 
@@ -24,6 +30,32 @@ export const CreateFeedbackModal = ({ closeModal }: Props) => {
         closeModal();
     })
   },[closeModal])
+
+  const createFeedback = async () => {
+    if(!product) return;
+
+    const { data } = await api.post(`/feedbacks/${product?.id}`, {
+      title,
+      recomendation,
+      message,
+      stars
+    });
+
+    const newFeedback: IFeedback = {
+      message,
+      title,
+      stars: stars || 1,
+      recomendation: recomendation || false,
+      createdAt: data.createdAt,
+      user: {
+        id: data.userId,
+        name: "Gabriel Sobral Dos Santos",
+        photo: "https://github.com/GabrSobral.png"
+      }
+    }
+    addFeedbackToState(newFeedback);
+    closeModal();
+  }
 
   return(
     <ModalContainer selector="#modal">
@@ -90,6 +122,7 @@ export const CreateFeedbackModal = ({ closeModal }: Props) => {
               type="button" 
               className={styles.submitButton}
               disabled={!(title && message && (recomendation !== null) && (stars !== null))}
+              onClick={createFeedback}
             >
               Concluir
             </button>
