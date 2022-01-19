@@ -10,6 +10,7 @@ export interface IProduct {
   feedbacks: number,
   averageRating: number,
   tags: ICategory[]
+  stock: number;
   advertiser: {
     id: string,
     name: string

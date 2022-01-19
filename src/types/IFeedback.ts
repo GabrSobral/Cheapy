@@ -4,7 +4,6 @@ export interface IFeedback {
   message: string;
   recomendation: boolean;
   createdAt: Date;
-  averageRating: number;
   user: {
     id: string;
     name: string;
