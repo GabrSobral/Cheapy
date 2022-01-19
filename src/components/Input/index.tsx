@@ -6,7 +6,7 @@ export interface InputCreateProps{
   title: string;
   value: string;
   setValue: (value: string) => void;
-  type: 'text' | 'textarea' | 'email' | 'password' | "decimal" | "select";
+  type: 'text' | 'textarea' | 'email' | 'password' | "number" | "select";
   maxLength?: number;
   disabled?: boolean;
 }
