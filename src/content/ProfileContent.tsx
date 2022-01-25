@@ -1,11 +1,12 @@
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { 
   MdOutlineFavoriteBorder, 
   MdOutlineShoppingCart, 
   MdOutlineInventory2, 
   MdOutlineAssignment } from 'react-icons/md'
-import { ExitModal } from '../components/ExitModal'
+import { Modal } from '../components/Modal'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { MyAnnounces } from '../components/MyAnnounces'
@@ -15,23 +16,37 @@ import { MyHistoryProducts } from '../components/MyHistoryProducts'
 import { useUser } from '../contexts/user'
 
 import styles from '../styles/profile.module.scss'
+import { removeToken } from '../utils/JsonWebToken'
 
 type ContentProps = "MyCart" | "History" | "Announces" | 'MyFavorites'
 
 export const ProfileContent = () => {
-  const { UserState } = useUser();
+  const { UserState, UserDispatch } = useUser();
   const [ isExitModalVisible, setIsExitModalVisible ] = useState(false);
   const [ content, setContent ] = useState<ContentProps>("MyCart");
+  const router = useRouter();
 
   const loader = (image: string) => image;
+
+  const exit = () => {
+    removeToken();
+    UserDispatch({ type: "logout" })
+    setIsExitModalVisible(false)
+    router.push("/");
+  }
 
   return(
     <div className={styles.container}>
       <Header/>
 
       { isExitModalVisible && 
-        <ExitModal
+        <Modal
+          haveX
+          text="Você tem certeza de que quer nos deixar? 😭 "
+          buttons="Confirm"
+          confirmFunc={exit}
           closeModal={() => setIsExitModalVisible(false)}
+          animation="Logout"
         />
       }
 
