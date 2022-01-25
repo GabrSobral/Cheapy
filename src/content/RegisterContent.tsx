@@ -2,21 +2,23 @@ import { FormEvent, useEffect, useState } from 'react'
 import { MdArrowBack } from 'react-icons/md'
 import { useRouter } from 'next/router'
 import { cpf } from 'cpf-cnpj-validator'
+import axios from 'axios'
 
 import { Header } from '../components/Header'
 import { SignForm } from '../components/SignForm'
 import { SignPageBanner } from '../components/SignPageBanner'
-import { useSignUp } from '../contexts/signUp'
-
-import styles from '../styles/signIn.module.scss'
 import { Button } from '../components/Button'
-import { api } from '../services/api'
-import axios from 'axios'
 import { InputCreateProps } from '../components/Input'
+
+import { useSignUp } from '../contexts/signUp'
+import { useUser } from '../contexts/user'
+import { api } from '../services/api'
+import styles from '../styles/signIn.module.scss'
 
 export const RegisterContent = () => {
   const router = useRouter();
   const query = router.query;
+  const { UserDispatch } = useUser();
   const [ page, setPage ] = useState(1);
   const [ isLoading, setIsLoading ] = useState(false);
   const [ errorMessage, setErrorMessage ] = useState("");
@@ -86,6 +88,10 @@ export const RegisterContent = () => {
         state: SignUpState.state,
         country: SignUpState.country,
         token: SignUpState.token
+      });
+      UserDispatch({ type: "setUser", payload: { user: { 
+        name: data.user.name,
+        photo: data.user.photo }}
       });
       router.push("/");
     } catch(error: any) { 
