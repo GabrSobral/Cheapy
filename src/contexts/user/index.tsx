@@ -33,7 +33,8 @@ export function UserProvider({ children }: { children: ReactNode }){
       const { data } = await api.get(`users/show?isSoft=true`)
       UserDispatch({ type: "setUser", payload: { user: { 
         name: data.name,
-        photo: data.photo } } });
+        photo: data.photo } } 
+      });
     })()
   },[UserDispatch])
 
