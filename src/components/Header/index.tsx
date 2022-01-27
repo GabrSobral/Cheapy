@@ -7,10 +7,20 @@ import styles from './style.module.scss'
 export const Header = () => {
   const { UserState } = useUser();
 
+  const loader = (imageUrl: string) => imageUrl;
+
   return(
     <header className={styles.container}>
       <Link href="/">
-        <a><Image src="/Logo.svg" alt="Logo" height={50} width={120}/></a>
+        <a>
+          <Image 
+            src="/Logo.svg" 
+            alt="Logo" 
+            height={50} 
+            width={120}
+            unoptimized
+          />
+        </a>
       </Link>
 
       <nav>
@@ -19,7 +29,7 @@ export const Header = () => {
           <Link href="/SignIn"><a>Entrar</a></Link> :
           <Link href="/"><a>Meu carrinho</a></Link>
         }
-        <Link href="/newProduct"><a className={styles.announce}>Anunciar</a></Link>
+        <Link href="/NewProduct"><a className={styles.announce}>Anunciar</a></Link>
         
         { UserState.name && (
           <div className={styles.user_container}>
@@ -27,15 +37,16 @@ export const Header = () => {
               <a className={styles.image_container}>
                 { UserState.photo && 
                   <Image 
+                    loader={()=> loader(UserState.photo)}
                     src={UserState.photo} alt="Imagem do usuário"
                     width={48}            height={48}
                     objectFit="cover"     placeholder="blur"
-                    blurDataURL="https://github.com/GabrSobral.png"
+                    blurDataURL={UserState.photo}
                   />
                 }
               </a>
             </Link>
-            <Link href="/Profile"><a>Olá, {UserState.name}</a></Link>
+            <Link href="/Profile"><a>Olá, {UserState.name.split(" ")[0]}</a></Link>
           </div>
         ) }
       </nav>

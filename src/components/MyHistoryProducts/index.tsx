@@ -7,8 +7,7 @@ export const MyHistoryProducts = () => {
       <h3>Compras feitas</h3>
       <div className={styles.list}>
         <div className={styles.list_container}>
-          <CartItem isHistory/>
-          <CartItem isHistory/>
+          {}
         </div>
 
         <div className={styles.list_footer}>

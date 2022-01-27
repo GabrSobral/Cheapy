@@ -1,33 +1,44 @@
+import { useMyCart } from '../../contexts/MyCartContext'
 import styles from '../../styles/profile.module.scss'
+import { formatPrice } from '../../utils/formatPrice'
 import { Button } from '../Button'
 import { CartItem } from '../CartItem'
 
 export const MyCartProfile = () => {
+  const { MyCartState } = useMyCart();
+
   return(
     <section className={styles.content}>
       <h3>Meu carrinho</h3>
       <div className={styles.list}>
-        <div className={styles.list_container}>
-          <CartItem/>
-          <CartItem/>
-          <CartItem/>
-          <CartItem/>
-          <CartItem/>
-          <CartItem/>
-        </div>
+        { MyCartState.myCartItems.length > 0 &&
+          <>
+            <div className={styles.list_container}>
+              {MyCartState.myCartItems.map((item, index) => 
+                <CartItem key={item.id} item={item} index={index}/>)}
+            </div>
 
-        <div className={styles.list_footer}>
-          <span>Total a pagar: R$2.698,00</span>
+            <div className={styles.list_footer}>
+              <span>
+                Total a pagar: 
+                {MyCartState.myCartItems.length !==0 && 
+                  formatPrice(MyCartState.myCartItems.reduce(
+                    (prev, current) => prev + (current.price * current.quantity), 0))}
+              </span>
+            </div>
+          </>
+        }
+      </div>
+      
+      { MyCartState.myCartItems.length > 0 && 
+        <div className={styles.button_container}>
+          <Button
+            icon={{ name: "payment", color: "#ffffff" }}
+            text="Efetuar pagamento"
+            onClick={() => alert("Pagamento efetuado")}
+          />
         </div>
-      </div>
-
-      <div className={styles.button_container}>
-        <Button
-          icon={{ name: "payment", color: "#ffffff" }}
-          text="Efetuar pagamento"
-          onClick={() => alert("Pagamento efetuado")}
-        />
-      </div>
+      }
     </section>
   )
 }

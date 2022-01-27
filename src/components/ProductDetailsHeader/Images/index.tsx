@@ -34,6 +34,8 @@ export const Images = () => {
             objectFit="contain"
             priority
             placeholder="blur"
+            height={512}
+            width={512}
             blurDataURL={currentImage?.url}
           />}
       </div>
@@ -53,6 +55,8 @@ export const Images = () => {
               alt="imagem do produto" 
               objectFit="contain"
               placeholder="blur"
+              height={128}
+              width={128}
               blurDataURL={image.url}
             />
           </button>

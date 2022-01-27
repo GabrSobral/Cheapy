@@ -5,6 +5,17 @@
   font-family: 'Poppins', sans-serif;
 }
 
+@media(max-width : 1366px){
+  html{
+    font-size: 93.75%;
+  }
+}
+@media(max-width : 720px){
+ html{
+   font-size: 87.5%;
+ }
+}
+
 :root {
   --primary: #6E0AD6;
   --primary-soft: #7C0EEF;
@@ -21,7 +32,7 @@ a{
   text-decoration: none;
 }
 
-span, p, a, h1, h2, h3, h4{
+span, p, a, h1, h2, h3, h4 {
   color: var(--text);
 }
 

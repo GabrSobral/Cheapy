@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { IFeedback } from '../../../types/IFeedback'
+import { GetUserId } from '../../../utils/parseJWT'
 import { FeedbackStars } from '../../FeedbackStars'
 import styles from './style.module.scss'
 
@@ -8,16 +9,27 @@ interface Props {
 }
 
 export const FeedbackItem = ({ feedback }: Props) => {
+  const loader = (image: string) => image;
+
   return(
-    <div className={styles.container}>
+    <div className={`
+      ${styles.container} 
+      ${feedback.user.id === GetUserId() && styles.my}`}
+    >
       <div className={styles.top}>
         <div>
           <div className={styles.img}>
             { feedback.user.photo && 
-              <Image src={feedback.user.photo} alt={`foto de perfil de ${feedback.user.name}`} width={48} height={48}/>
+              <Image 
+                loader={() => loader(feedback.user.photo)}
+                src={feedback.user.photo} 
+                alt={`foto de perfil de ${feedback.user.name}`} 
+                width={48} 
+                height={48}
+              />
             }
           </div>
-          <span>{feedback.user.name}</span>
+          <span>{feedback.user.name} {feedback.user.id === GetUserId() && "(Eu)"}</span>
         </div>
 
         <FeedbackStars size={32} stars={feedback.stars}/>

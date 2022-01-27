@@ -6,7 +6,9 @@ import {
   useEffect,
   useReducer
 } from "react";
+import { api } from "../../services/api";
 import { IUser } from "../../types/IUser";
+import { GetUserId } from "../../utils/parseJWT";
 
 import { IUserState, IUserAction, UserReducer } from "./reducer";
 
@@ -25,9 +27,15 @@ export function UserProvider({ children }: { children: ReactNode }){
   const [ UserState, UserDispatch ] = useReducer(UserReducer, initialstate);
 
   useEffect(() => {
-    UserDispatch({ type: "setUser", payload: { user: { 
-      name: "Gabriel Sobral dos Santos",
-      photo: "https://github.com/GabrSobral.png" } } });
+    if(!GetUserId()) return;
+    
+    (async () => {
+      const { data } = await api.get(`users/show?isSoft=true`)
+      UserDispatch({ type: "setUser", payload: { user: { 
+        name: data.name,
+        photo: data.photo } } 
+      });
+    })()
   },[UserDispatch])
 
   return(

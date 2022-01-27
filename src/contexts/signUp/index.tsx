@@ -22,7 +22,11 @@ export function SignUpProvider({ children }: { children: ReactNode }){
     password: "",
     confirmationPassword: "",
     CPF: "",
-    token: ""
+    token: "",
+    CEP: "",
+    state: "",
+    country: "Brasil",
+    city: "",
   };
   const [ SignUpState, SignUpDispatch ] = useReducer(SignUpReducer, initialstate);
 

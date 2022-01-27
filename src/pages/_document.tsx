@@ -13,6 +13,7 @@ class MyDocument extends Document {
         <body>
           <Main/>
           <div id='modal' />
+          <div id='shoppingCart' />
           <NextScript/>
         </body>
       </Html>

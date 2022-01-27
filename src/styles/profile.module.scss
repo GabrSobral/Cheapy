@@ -31,6 +31,23 @@
       span:last-child{
         color: var(--text-soft);
       }
+
+      .exit_button {
+        margin-top: 0.5rem;
+        width: 100%;
+        border-radius: 7px;
+        border: 2px solid var(--warning);
+        color: var(--warning);
+        font-weight: 500;
+        font-size: 1rem;
+        background-color: var(--background);
+        padding: 0.5rem;
+
+        &:hover {
+          color: var(--white);
+          background-color: var(--warning);
+        }
+      }
     }
 
     .content {

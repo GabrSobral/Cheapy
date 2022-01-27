@@ -4,11 +4,12 @@ import { useRouter } from "next/router";
 
 import { Header } from "../components/Header";
 import { SignPageBanner } from "../components/SignPageBanner";
-import { InputData, SignForm } from '../components/SignForm';
+import { SignForm } from '../components/SignForm';
 
 import { api } from '../services/api';
 import styles from '../styles/signIn.module.scss';
 import { MdArrowBack } from 'react-icons/md';
+import { InputCreateProps } from '../components/Input';
 
 export const SignUpContent = () => {
   const router = useRouter();
@@ -27,7 +28,7 @@ export const SignUpContent = () => {
     } finally { setIsLoading(false); }
   }
 
-  const inputs: InputData[] = [
+  const inputs: InputCreateProps[] = [
     {
       value: name, 
       setValue: (value) => setName(value), 
