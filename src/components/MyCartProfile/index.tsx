@@ -5,7 +5,7 @@ import { Button } from '../Button'
 import { CartItem } from '../CartItem'
 
 export const MyCartProfile = () => {
-  const { MyCartState } = useMyCart();
+  const { MyCartState, Pay } = useMyCart();
 
   return(
     <section className={styles.content}>
@@ -35,7 +35,7 @@ export const MyCartProfile = () => {
           <Button
             icon={{ name: "payment", color: "#ffffff" }}
             text="Efetuar pagamento"
-            onClick={() => alert("Pagamento efetuado")}
+            onClick={Pay}
           />
         </div>
       }

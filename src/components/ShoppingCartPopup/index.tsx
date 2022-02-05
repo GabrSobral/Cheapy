@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { useState } from "react"
 import { MdDeleteOutline } from "react-icons/md"
 import { useMyCart } from "../../contexts/MyCartContext"
@@ -9,11 +10,15 @@ import styles from './style.module.scss'
 export const ShoppingCartPopup = () => {
   const { MyCartState, removeFromCart } = useMyCart();
   const [ isVisible, setIsVisible ] = useState(true);
+  const { pathname } = useRouter()
   const loader = (imageUrl: string) => imageUrl;
+
+  const nonVisiblePaths = [ "/Profile", "/NewProduct" ];
 
   return(
     <CartContainer selector="#shoppingCart">
-      { MyCartState.myCartItems.length > 0 &&
+      { (!nonVisiblePaths.includes(pathname) && 
+        MyCartState.myCartItems.length > 0)  &&
         <div className={styles.cart_container}>
           <button type="button" onClick={() => setIsVisible(p => !p)}>
             { isVisible ? "Minimizar" : "Exibir" } carrinho
@@ -21,7 +26,7 @@ export const ShoppingCartPopup = () => {
           
           { isVisible && 
             <div className={styles.list}>
-              {  MyCartState.myCartItems.map((item, index) => 
+              { MyCartState.myCartItems.map((item, index) => 
               <>
                 <div className={styles.cart_item_popup}>
                   <div className={styles.image_container}>

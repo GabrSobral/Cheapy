@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const CartItem = ({ isHistory = false, item, index }: Props) => {
-  const { MyCartDispatch } = useMyCart();
+  const { MyCartDispatch, removeFromCart } = useMyCart();
   const loader = (imageUrl: string) => imageUrl;
 
   const handlePrice = () => {
@@ -56,7 +56,7 @@ export const CartItem = ({ isHistory = false, item, index }: Props) => {
             <button 
               type="button" 
               className={styles.delete_item}
-              onClick={() => MyCartDispatch({type:"deleteItem", payload: { index }})}
+              onClick={() => removeFromCart(item, index)}
             >
               <MdDeleteOutline size={32} color="#E45353"/>
             </button>
