@@ -50,10 +50,8 @@ export const ProductItemsContainer = () => {
       </button>
 
       <div className={styles.carrouselContainer} ref={carrousel}>
-        {products.map(item => 
-          <div  className={styles.productITemContainer} key={item} ref={productItemRef}>
-            <ProductItem product={item}/>
-          </div>
+        {products.map((item: any) => 
+          <ProductItem key={item.id} product={item}/>
         )}
       </div>
       

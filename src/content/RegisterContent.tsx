@@ -14,6 +14,8 @@ import { useSignUp } from '../contexts/signUp'
 import { useUser } from '../contexts/user'
 import { api } from '../services/api'
 import styles from '../styles/signIn.module.scss'
+import { setToken } from '../utils/JsonWebToken'
+import { setRefreshToken } from '../utils/RefreshToken'
 
 export const RegisterContent = () => {
   const router = useRouter();
@@ -93,6 +95,8 @@ export const RegisterContent = () => {
         name: data.user.name,
         photo: data.user.photo }}
       });
+      setToken(data.token);
+      setRefreshToken(data.refreshToken.id);
       router.push("/");
     } catch(error: any) { 
       setErrorMessage(error.response.data.message); 

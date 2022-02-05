@@ -58,8 +58,7 @@ export const ProductItem = ({ product, isEditable = false }: Props) => {
           </div>
 
           { isEditable &&  
-            <button type="button" className={styles.edit}>Editar</button>
-          }
+            <button type="button" className={styles.edit}>Editar</button>}
         </div>
       </div>
   )

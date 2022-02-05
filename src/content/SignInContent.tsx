@@ -12,6 +12,7 @@ import { api } from '../services/api';
 import { useUser } from '../contexts/user';
 import { useRouter } from 'next/router';
 import { setToken } from '../utils/JsonWebToken';
+import { setRefreshToken } from '../utils/RefreshToken';
 
 export const SignInContent = () => {
   const router = useRouter();
@@ -32,7 +33,8 @@ export const SignInContent = () => {
         photo: data.user.photo }}
       });
       setToken(data.token);
-      router.push("/Profile");
+      setRefreshToken(data.refreshToken.id);
+      router.back();
     } catch(error: any) {
       setErrorMessage(error.response.data.message);
       setIsLoading(false);
