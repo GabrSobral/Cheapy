@@ -1,28 +1,39 @@
-import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { IProduct } from "../../types/IProduct";
 
-import { useRouter } from "next/router";
 import { api } from "../../services/api";
+import { useRouter } from "next/router";
 
 interface ProductContextProps {
   product?: IProduct;
-  setProductsContext: (products: IProduct) => void;
+  handleFavorite: () => Promise<void>;
 }
 
 export const ProductContext = createContext({} as ProductContextProps);
 
 export function ProductProvider({ children }: { children: ReactNode }){
+  const { query } = useRouter();
   const [ product, setProduct ] = useState<IProduct>();
 
-  const setProductsContext = useCallback((products: IProduct) => {
-    setProduct(products);
-  },[]);
+  const handleFavorite = async () => {
+    await api.post(`/favorite/${product?.id}`);
+  }
+
+  useEffect(() => {
+    if(!query.id) return;
+
+    (async () => {
+      const { data } = await api.get(`/products/${query.id}`);
+      setProduct(data);
+      console.log(data);
+    })()
+  },[query])
 
   return(
     <ProductContext.Provider
       value={{ 
         product,
-        setProductsContext
+        handleFavorite
       }}
     >
       {children}

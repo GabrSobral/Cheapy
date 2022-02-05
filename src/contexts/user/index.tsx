@@ -7,7 +7,6 @@ import {
   useReducer
 } from "react";
 import { api } from "../../services/api";
-import { IUser } from "../../types/IUser";
 import { GetUserId } from "../../utils/parseJWT";
 
 import { IUserState, IUserAction, UserReducer } from "./reducer";
@@ -35,7 +34,7 @@ export function UserProvider({ children }: { children: ReactNode }){
         name: data.name,
         photo: data.photo } } 
       });
-    })()
+    })();
   },[UserDispatch])
 
   return(
