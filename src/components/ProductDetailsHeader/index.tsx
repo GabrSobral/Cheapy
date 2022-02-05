@@ -7,7 +7,7 @@ import { Tags } from './Tags'
 import styles from './style.module.scss' 
 import { Button } from '../Button'
 import { useMyCart } from '../../contexts/MyCartContext'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const ProductDetailsHeader = () => {
   const { product } = useProduct();
