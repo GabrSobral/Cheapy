@@ -17,6 +17,7 @@ import { useUser } from '../contexts/user'
 
 import styles from '../styles/profile.module.scss'
 import { removeToken } from '../utils/JsonWebToken'
+import { removeRefreshToken } from '../utils/RefreshToken'
 
 type ContentProps = "MyCart" | "History" | "Announces" | 'MyFavorites'
 
@@ -30,8 +31,9 @@ export const ProfileContent = () => {
 
   const exit = () => {
     removeToken();
-    UserDispatch({ type: "logout" })
-    setIsExitModalVisible(false)
+    removeRefreshToken();
+    UserDispatch({ type: "logout" });
+    setIsExitModalVisible(false);
     router.push("/");
   }
 

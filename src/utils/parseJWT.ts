@@ -17,3 +17,14 @@ export const GetUserId = () => {
 
   return parseJwt(token).Id;
 }
+
+export const IsTokenExpired = () => {
+  const token = getToken(); 
+  
+  if(!token) return;
+
+  const expirexIn = parseJwt(token).exp;
+  const unixNow = new Date().getTime()/1000;
+
+  return unixNow > expirexIn
+}

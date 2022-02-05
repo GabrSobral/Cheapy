@@ -17,4 +17,5 @@ export interface IProduct {
   },
   thumb: string,
   images: IPhotos[],
+  isFavorited: boolean | null,
 }

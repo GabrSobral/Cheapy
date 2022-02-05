@@ -3,18 +3,27 @@ import { useEffect, useState } from 'react'
 import { formatPrice } from '../../../utils/formatPrice'
 import { useProduct } from '../../../contexts/product'
 import styles from './style.module.scss'
+import { useUser } from '../../../contexts/user'
 
 export const Price = () => {
-  const { product } = useProduct();
-  const [ isFavorited, setIsFavorited ] = useState(false);
+  const { product, handleFavorite } = useProduct();
+  const { UserState } = useUser();
+  const [ isFavorited, setIsFavorited ] = useState(product?.isFavorited);
   const [ finalPrice, setFinalPrice ] = useState(0);
 
   useEffect(() => {
     if(!product?.price) return;
-    
-    const discount = (product.price * product.discount)/100
-    setFinalPrice(product.price - discount)
+
+    const discount = (product.price * product.discount)/100;
+    setFinalPrice(product.price - discount);
+    console.log(product.isFavorited);
+    setIsFavorited(product.isFavorited);
   },[product])
+
+  async function setFavorite() {
+    setIsFavorited(prev => !prev);
+    await handleFavorite();
+  }
 
   return(
     <div className={styles.price_container}>
@@ -32,12 +41,13 @@ export const Price = () => {
         </div>
       </div>
       
-      <button type="button" onClick={() => setIsFavorited(prev => !prev)}>
-        { isFavorited ?
-          <MdFavorite size={36} color="#E45353"/>
-          :
-          <MdFavoriteBorder size={36} color="#999999"/>
-        } 
+      <button type="button" onClick={setFavorite}>
+        {
+          isFavorited === true ?
+            <MdFavorite size={36} color="#E45353"/> :
+            (isFavorited === false &&
+              <MdFavoriteBorder size={36} color="#999999"/>)
+        }
       </button>
     </div>
   )
