@@ -16,7 +16,6 @@ export const Price = () => {
 
     const discount = (product.price * product.discount)/100;
     setFinalPrice(product.price - discount);
-    console.log(product.isFavorited);
     setIsFavorited(product.isFavorited);
   },[product])
 
@@ -41,14 +40,17 @@ export const Price = () => {
         </div>
       </div>
       
-      <button type="button" onClick={setFavorite}>
-        {
-          isFavorited === true ?
+      {
+        UserState.name &&
+        <button type="button" onClick={setFavorite}>
+          {
+            isFavorited === true ?
             <MdFavorite size={36} color="#E45353"/> :
-            (isFavorited === false &&
-              <MdFavoriteBorder size={36} color="#999999"/>)
-        }
-      </button>
+              (isFavorited === false &&
+                <MdFavoriteBorder size={36} color="#999999"/>)
+          }
+        </button>
+      }
     </div>
   )
 }

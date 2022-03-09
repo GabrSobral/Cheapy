@@ -56,7 +56,13 @@ export function MyCartProvider({ children }: { children: ReactNode }){
       quantity: 1
     };
     MyCartDispatch({ type: "addItem", payload: { data: newItem }});
-    await api.post("/shopping/add", { productId: item.id, quantity: 1 });
+    try {  
+      await api.post("/shopping/add", { productId: item.id, quantity: 1 });
+    } catch(error: any) {
+      console.log(error.response);
+      if(error.response.status === 401)
+        return;
+    }
   };
 
   const Pay = async () => {
